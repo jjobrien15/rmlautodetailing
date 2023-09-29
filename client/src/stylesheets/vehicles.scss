@@ -1,0 +1,16 @@
+@use "./globalVariables.scss" as var;
+
+.vehiclesContent{
+    margin: 0 auto;
+    text-align: center;
+    width: 50%;
+}
+
+.vehicles{
+    background-color: var.$gold;
+    .vehicle{
+        display: flex;
+        border: 1px solid red;
+    }
+
+}

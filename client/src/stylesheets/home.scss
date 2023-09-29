@@ -1,0 +1,75 @@
+@use "globalVariables.scss" as var;
+
+.homeBanner{
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: var.$box-shadow;
+        .homeBannerContent{
+        width: 65%;
+        color: var.$white;
+        padding: 0 15%;
+        h1, p{
+            padding-bottom: 10px;
+        }
+        button{
+            margin-right: 1.5rem;
+        }
+    }
+}
+
+.homeServices{
+    min-height: 50vh; /*remove once card completed*/
+    background-color: var.$gray;
+    h1{
+        text-align: center;
+    }
+    .serviceCards{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+        gap: 4rem;
+        text-align: center;
+        .serviceCard{
+            color: var.$black;
+            padding: 1rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            .serviceIcon{
+                color: var.$gold;
+                font-size: 3rem;
+                padding-bottom: 1.5rem;
+            }
+        }
+    }
+}
+
+.homeTestimonials{
+    background-color: var.$gray;
+    min-height: 50vh;
+    text-align: center;
+   .testimonialCards{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        .testimonialCard{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: var.$white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            .testimonialQuotes{
+                color: var.$gray;
+            }
+            .testimonialName{
+                font-weight: bold;
+            }
+        }
+   }
+}

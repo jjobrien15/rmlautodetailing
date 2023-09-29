@@ -1,0 +1,36 @@
+@use "globalVariables.scss" as var;
+
+.galleryBanner{
+    justify-content: center;
+    flex-direction: column;
+    .galleryBannerContent{
+        width: 50%;
+        text-align: center;
+    }
+}
+
+.imageGallerySection{
+    background-color: var.$gold;
+    text-align: center;
+    .imageGallery{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        .imageContainer{
+            width: 100%;
+            height: 300px;
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                box-shadow: 0 0 8px var.$black;
+                transition: all 0.3s ease;
+                &:hover{
+                    box-shadow: 0 0 16px var.$black;
+                }
+            }
+            
+        }
+        
+    }
+}

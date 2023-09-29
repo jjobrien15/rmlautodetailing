@@ -1,0 +1,23 @@
+@use "./globalVariables.scss" as var;
+
+
+.aboutContent{
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+.profiles{
+    background-color: var.$gold;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    .profile{
+        width: 50%;
+        text-align: center;
+       img{
+        width: 300px;
+        height: 300px;
+        border-radius: 10px;
+       }
+    }
+}

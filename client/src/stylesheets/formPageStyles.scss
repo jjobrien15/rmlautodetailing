@@ -1,0 +1,57 @@
+@use "./globalVariables.scss" as var;
+
+.formPageContent{
+    margin: 0 auto;
+    background-color: var.$darkGray;
+    border-radius: var.$form-border-radius;
+    padding: var.$form-padding;
+    color: var.$white;
+    display: flex;
+    flex-direction: column;
+    form{
+        display: flex;
+        flex-direction: column; 
+        gap: var.$form-gap;
+        width: 100%;
+        padding: 2rem 0;
+        input, select{
+            background-color: var.$gray;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            color: var.$black;
+        }
+        .formErrMessage{
+            color: red;
+            font-size: 0.75rem;
+            display: none;
+        }
+        input:invalid[focused="true"] ~ .formErrMessage{
+            display: block;
+            color: red;
+        }
+        input:invalid[focused="true"] {
+            border: 1px solid red;
+        }
+        .submitBtn{
+            background-color: var.$gold;
+            color: var.$black;
+            border: none;
+            padding: 0.5rem; 
+            border-radius: 5px;
+            width: 50%;
+            align-self: center;
+            cursor: pointer;
+        }
+    }
+    p{
+        font-size: 0.8rem;
+    }
+    .formLinks{
+        color: var.$gold;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
