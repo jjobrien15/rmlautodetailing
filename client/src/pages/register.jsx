@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar"
 import { useState } from "react"
 import FormInput from "../components/FormInput"
 import "../stylesheets/formPageStyles.scss"
+import axios from "axios"
 
 const register = () => {
 
@@ -58,13 +59,22 @@ const register = () => {
     },
   ]
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("submitted")
+  //Setting state for form values on each change of the value
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value })
   }
 
-  const handleChange = (e) => {
-    setFormValues({...formValues, [e.target.name]: e.target.value})
+  //Handle API request to create new user
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post("http://localhost:3001/auth/register", { ...formValues });
+      alert("Registration successful! Please login.");
+    } catch (err){
+      console.log(err);
+    }
+
   }
 
   return (
@@ -72,7 +82,7 @@ const register = () => {
       <Navbar />
       <div className='formPageContent'>
         <h1>Register</h1>
-        <form className="resgisterForm" action="">
+        <form className="resgisterForm" onSubmit={onSubmit}>
           {inputs.map((input, key) => (
             <FormInput
             {...input}
