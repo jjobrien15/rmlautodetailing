@@ -1,17 +1,8 @@
 //Navbar css in located in main.scss
 import { useState, useEffect } from "react"
 import RMLLogo from "../assets/RMLLogo.png"
-import Socials from "../components/Socials"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
-
-const NavLinks = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "Services" },
-    { name: "Gallery", href: "Gallery" },
-    { name: "About", href: "About" },
-    { name: "Shop Vehicles", href: "Vehicles" },
-]
 
 const Navbar = () => {
   //State to check if scrolled away from top of page to add styling to navbar if moved
@@ -20,6 +11,13 @@ const Navbar = () => {
   //Use cookies to check if a user is logged in
   const [cookies, setCookies] = useCookies(["access_token"]);
 
+  const NavLinks = [
+    { name: "Home", href: "/" },
+    { name: "Services", href: "Services" },
+    { name: "Gallery", href: "Gallery" },
+    { name: "About", href: "About" },
+    { name: "Shop Vehicles", href: "Vehicles" },
+]
   //Used to navigate to login page on logout
   const navigate = useNavigate();
 
@@ -72,7 +70,7 @@ const Navbar = () => {
             ))
             :
             RightNavLinksLoggedIn.map((link) => (
-              <li className="rightNavLinks" key={link.name}><a href={link.href} onClick={link.name == "Logout" ? logout : ""}>{link.name}</a></li>
+              <li className="rightNavLinks" key={link.name}><a href={link.href} onClick={link.name == "Logout" ? logout : null}>{link.name}</a></li>
             ))
         }
       </ul>
