@@ -18,6 +18,12 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    appointments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "appointments",
+        }
+    ],
 });
 
 export const UserModel = mongoose.model("users", UserSchema);
