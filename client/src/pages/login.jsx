@@ -48,13 +48,11 @@ const Login = () => {
   //Attempting to validate user and login
   const onSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("http://localhost:3001/auth/login", { ...formValues });
       setCookies("access_token", response.data.token);
       window.localStorage.setItem("userID", response.data.userID);
-      navigate("/");
-
+      navigate("/Profile");
     } catch (err){
       console.log(err);
     }

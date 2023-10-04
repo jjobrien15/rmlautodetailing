@@ -9,6 +9,7 @@ import Vehicles from "./pages/vehicles"
 import Login from "./pages/login"
 import Schedule from './pages/schedule'
 import Register from "./pages/register"
+import Profile from "./pages/profile"
 import ErrorPage from "./pages/error-page"
 import "./stylesheets/main.scss"
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/Register",
     element: <Register />,
+  },
+  {
+    path: "/Profile",
+    element: <Profile />,
   },
   {
     path: "/Schedule",

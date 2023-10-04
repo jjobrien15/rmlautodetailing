@@ -6,6 +6,22 @@ import { UserModel } from "../models/usersModel.js";
 
 const router = express.Router();
 
+
+
+export const verifyToken = (req, res, next) => {
+    const token = req.headers.auth;
+    if (!token) {
+        res.send()
+    } else {
+        jwt.verify(token, process.env.ACCESS_TOKEN, (err) => {
+            if (err) return res.sendStatus(403);
+            next();
+        })
+    }
+}
+
+
+
 //Register a new user and hash password
 router.post("/register", async (req, res) => {
     const { fname, lname, email, pwd } = req.body;
@@ -45,4 +61,14 @@ router.post("/login", async (req, res) => {
 
 });
 
-export {router as userRouter};
+//Get user info for profile
+router.get("/profile/:id", verifyToken, async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.params.id);
+        res.json(user);
+    } catch (err) {
+        console.log(err);
+   }
+});
+
+export { router as userRouter };

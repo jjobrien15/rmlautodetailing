@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import { appointmentModel } from "../models/appointmentsModel.js";
 import { UserModel } from "../models/usersModel.js";
 
@@ -38,7 +37,7 @@ router.put("/createAppointment", async (req, res) => {
 
 router.get("/appointments/ids", async (req, res) => {
     try {
-        const user = await UserModel.findById(req.bodu.userID);
+        const user = await UserModel.findById(req.body.userID);
         res.json({ savedAppointments: user?.appointments });
     } catch (err) {
         console.log(err);
@@ -47,7 +46,7 @@ router.get("/appointments/ids", async (req, res) => {
 
 router.get("/appointments", async (req, res) => {
     try {
-        const user = await UserModel.findById(req.bodu.userID);
+        const user = await UserModel.findById(req.body.userID);
         const userAppointments = await appointmentModel.find({_id: {$in: user.appointments}});
         res.json({ userAppointments });
     } catch (err) {

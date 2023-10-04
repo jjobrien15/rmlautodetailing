@@ -1,0 +1,29 @@
+@use "./globalVariables.scss" as var;
+
+.profileContent{
+    color: var.$white;
+    .profileNav{
+        display: flex;
+        flex-direction: column;
+        background-color: var.$darkGray;
+        padding: var.$form-padding;
+        border-radius: var.$form-border-radius;
+        text-align: center;
+        img{
+            width: 250px;
+            height: 250px;
+            border-radius: 1000px;
+            bordeR: 2px solid var.$gold;
+        }
+        ul{
+            list-style-type: none;
+            li a{
+                color: var.$white;
+                &:hover{
+                color: var.$gold;
+                }
+               }
+        }
+       
+    }
+}

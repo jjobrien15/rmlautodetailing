@@ -16,9 +16,8 @@ const Navbar = () => {
     { name: "Services", href: "Services" },
     { name: "Gallery", href: "Gallery" },
     { name: "About", href: "About" },
-    { name: "Shop Vehicles", href: "Vehicles" },
 ]
-  //Used to navigate to login page on logout
+  //useNavigate hook to login page on logout
   const navigate = useNavigate();
 
   //Logout function
@@ -29,13 +28,12 @@ const Navbar = () => {
   }
 
   const RightNavLinks = [
-    { name: "Schedule Service", href: "Schedule" },
     { name: "Login", href: "Login" },
   ]
   
   const RightNavLinksLoggedIn = [
+    { name: "Profile", href: "Profile"},
     { name: "Schedule Service", href: "Schedule" },
-    { name: "Logout", href: "#"},
   ]
 
   //Effect that will handle logic for scrolling away from top of screen to add style/class to Navbar
@@ -70,7 +68,7 @@ const Navbar = () => {
             ))
             :
             RightNavLinksLoggedIn.map((link) => (
-              <li className="rightNavLinks" key={link.name}><a href={link.href} onClick={link.name == "Logout" ? logout : null}>{link.name}</a></li>
+              <li className="rightNavLinks" key={link.name}><a href={link.href}>{link.name}</a></li>
             ))
         }
       </ul>
