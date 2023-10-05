@@ -73,3 +73,25 @@
         }
    }
 }
+
+@media screen and (max-width: 1000px) {
+    .homeBanner{
+        .homeBannerContent{
+            width: 100%;
+            text-align: center;
+            padding: 5%;
+        }
+    }
+    .homeServices{
+        .serviceCards{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .homeTestimonials{
+        .testimonialCards{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

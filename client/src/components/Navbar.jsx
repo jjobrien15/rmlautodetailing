@@ -3,10 +3,14 @@ import { useState, useEffect } from "react"
 import RMLLogo from "../assets/RMLLogo.png"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
   //State to check if scrolled away from top of page to add styling to navbar if moved
   const [scrolling, setScrolling] = useState(false)
+  //State to check if navbar is collapsed or not
+  const [navCollapsed, setNavCollapsed] = useState(false)
 
   //Use cookies to check if a user is logged in
   const [cookies, setCookies] = useCookies(["access_token"]);
@@ -16,6 +20,7 @@ const Navbar = () => {
     { name: "Services", href: "Services" },
     { name: "Gallery", href: "Gallery" },
     { name: "About", href: "About" },
+    { name: "Schedule", href: "Schedule" },
 ]
   //useNavigate hook to login page on logout
   const navigate = useNavigate();
@@ -33,7 +38,6 @@ const Navbar = () => {
   
   const RightNavLinksLoggedIn = [
     { name: "Profile", href: "Profile"},
-    { name: "Schedule Service", href: "Schedule" },
   ]
 
   //Effect that will handle logic for scrolling away from top of screen to add style/class to Navbar
@@ -51,27 +55,35 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
    }, [])
 
+   const handleNavbarCollapse = () => {
+      setNavCollapsed(!navCollapsed);
+      console.log(navCollapsed);
+   }
+
   return (
     <nav className={scrolling ? "scrolling" : ""}>
-      <div className="logo"><a href="/"><img src={RMLLogo} alt="RML Auto Detailing" /></a></div>
+  
+        <div className="logo"><a href="/"><img src={RMLLogo} alt="RML Auto Detailing" /></a></div>
+        
+        <button className="menuBtn" id="menuBtn"type="button" onClick={handleNavbarCollapse}>
+          <FontAwesomeIcon icon={faBars} />
+        </button>
 
-      <ul>
-        {NavLinks.map((link) => (
-            <li className="navLinks" key={link.name}><a href={link.href}>{link.name}</a></li>
-        ))}
-      </ul>
-
-      <ul>
+        <ul className={navCollapsed ? "collapsed" : "navLinks"}>
+          {NavLinks.map((link) => (
+              <li key={link.name}><a href={link.href}>{link.name}</a></li>
+          ))}
         {!cookies.access_token ?
             RightNavLinks.map((link) => (
-              <li className="rightNavLinks" key={link.name}><a href={link.href}>{link.name}</a></li>
+              <li key={link.name}><a href={link.href}>{link.name}</a></li>
             ))
             :
             RightNavLinksLoggedIn.map((link) => (
-              <li className="rightNavLinks" key={link.name}><a href={link.href}>{link.name}</a></li>
+              <li key={link.name}><a href={link.href}>{link.name}</a></li>
             ))
         }
-      </ul>
+        </ul>
+
 
       {/* <Socials scrolling={scrolling ? "scrollingSocials" : ""} /> */}
 

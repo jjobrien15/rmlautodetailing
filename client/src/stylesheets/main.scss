@@ -103,7 +103,8 @@ nav{
             }
         }
     }
-}
+}//End Nav
+
 
 .banner{
     min-height: 100vh;
@@ -201,6 +202,34 @@ nav{
         text-align: center;
         img{
             height: 40px;
+        }
+    }
+}
+
+//Responsive Styling
+@media screen and (max-width: 1000px) {
+    .container{
+        padding: 10%;
+    }
+    nav{
+        .collapsed{
+            display: flex;
+        }
+        .navLinks{
+            display: none;
+        }
+        .menuBtn{
+            background-color: transparent;
+            border: none;
+            color: var.$white;
+            font-size: 1.5rem;
+        }
+    }
+    .footer{
+        .footerContent{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
         }
     }
 }
