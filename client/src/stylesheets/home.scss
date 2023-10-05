@@ -74,12 +74,11 @@
    }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: var.$responsive-width) {
     .homeBanner{
         .homeBannerContent{
             width: 100%;
             text-align: center;
-            padding: 5%;
         }
     }
     .homeServices{

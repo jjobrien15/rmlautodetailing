@@ -7,7 +7,7 @@ const services = () => {
   return (
     <div>
       <Navbar />
-      <div className="banner servicesBanner">
+      <div className="banner servicesBanner container">
         <div className="servicesBannerContent">
           <h1>Our Services</h1>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas quae temporibus quam reprehenderit iure, magni laborum fugit eligendi quisquam eos labore cumque deleniti praesentium, ullam enim eaque sapiente aliquid iste!</p>

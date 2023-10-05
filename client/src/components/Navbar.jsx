@@ -4,7 +4,7 @@ import RMLLogo from "../assets/RMLLogo.png"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faMultiply } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
   //State to check if scrolled away from top of page to add styling to navbar if moved
@@ -43,33 +43,44 @@ const Navbar = () => {
   //Effect that will handle logic for scrolling away from top of screen to add style/class to Navbar
   useEffect(() => {
 
-    if (scrolling > 150) {
-      setScrolling(window.scrollY > 150);
+        if (scrolling > 150) {
+          setScrolling(window.scrollY > 150);
+        }
+
+        const handleScroll = () => {
+          setScrolling(window.scrollY > 150);
+        }
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+  }, [])
+  
+  //Effect that will handle logic for resize and checking responsive navbar when resized
+  useEffect(() => {
+
+    const handleResize = () => {
+      if (window.innerWidth > 1200) {
+        setNavCollapsed(false);
+      }
     }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+    }, [])
 
-    const handleScroll = () => {
-      setScrolling(window.scrollY > 150);
-    }
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-   }, [])
-
-   const handleNavbarCollapse = () => {
+  const handleNavbarCollapse = () => {
       setNavCollapsed(!navCollapsed);
-      console.log(navCollapsed);
    }
 
   return (
-    <nav className={scrolling ? "scrolling" : ""}>
+    <nav className={`${scrolling || navCollapsed ? "scrolling" : ""}`}>
   
         <div className="logo"><a href="/"><img src={RMLLogo} alt="RML Auto Detailing" /></a></div>
         
         <button className="menuBtn" id="menuBtn"type="button" onClick={handleNavbarCollapse}>
-          <FontAwesomeIcon icon={faBars} />
+          <FontAwesomeIcon icon={navCollapsed ? faMultiply : faBars} />
         </button>
 
-        <ul className={navCollapsed ? "collapsed" : "navLinks"}>
+      <ul className={`${navCollapsed ? "collapsed" : "navLinks"}`}>
           {NavLinks.map((link) => (
               <li key={link.name}><a href={link.href}>{link.name}</a></li>
           ))}

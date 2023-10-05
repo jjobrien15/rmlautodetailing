@@ -27,6 +27,30 @@ a{
         background-color: var.$black;
     }
 }
+.container{
+    padding: 5rem 15%;
+}
+
+.scrolling{
+    background-color: var.$black;
+    height: var.$responsive-nav-height;
+}
+
+.banner{
+    min-height: 100vh;
+    background-image: url("../assets/background1.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    box-shadow: var.$box-shadow;
+    h1{
+        color: var.$gold;
+    }
+    p{
+        color: var.$white;
+    }
+}
 
 //Editing scrollbar style
 
@@ -46,14 +70,7 @@ a{
   border-radius: 100px;
 }
 
-.container{
-    padding: 5rem 15%;
-}
 
-.scrolling{
-    background-color: var.$black;
-    height: 75px;
-}
 
 nav{
     position: fixed;
@@ -70,6 +87,10 @@ nav{
     transition: ease 0.3s all;
     .logo img{
         height: 40px;
+    }
+
+    .menuBtn{
+        display: none;
     }
 
     ul{
@@ -105,22 +126,6 @@ nav{
     }
 }//End Nav
 
-
-.banner{
-    min-height: 100vh;
-    background-image: url("../assets/background1.jpg");
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    box-shadow: var.$box-shadow;
-    h1{
-        color: var.$gold;
-    }
-    p{
-        color: var.$white;
-    }
-}
 
 .scrollingSocials{
     background-color: var.$black;
@@ -207,20 +212,38 @@ nav{
 }
 
 //Responsive Styling
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: var.$responsive-width) {
     .container{
         padding: 10%;
     }
     nav{
+
+        nav .collapsed {
+            background-color: var.$black;
+        }
         .collapsed{
+            position: fixed;
+            top: var.$responsive-nav-height;
+            left: 0;
+            width: 100%;
+            background-color: var.$black;
             display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            padding: 2rem;
+        }
+        .scrollingResponsiveNav{
+            background-color: var.$black;
         }
         .navLinks{
             display: none;
+            transition: all 0.3s ease;
         }
         .menuBtn{
+            display: block;
             background-color: transparent;
             border: none;
+            padding: 1rem;
             color: var.$white;
             font-size: 1.5rem;
         }

@@ -91,3 +91,12 @@
         }
     }
 }
+
+@media screen and (max-width: var.$responsive-width){
+    .servicesBanner{
+        .servicesBannerContent{
+            width: 100%;
+            padding: 5%;
+        }
+    }
+}
