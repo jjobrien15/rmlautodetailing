@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Home from "./pages/home.jsx"
+import Home from "./pages/home"
 import Services from "./pages/services.jsx"
 import About from "./pages/about.jsx"
 import Gallery from "./pages/gallery.jsx"
