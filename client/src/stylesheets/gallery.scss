@@ -4,7 +4,6 @@
     justify-content: center;
     flex-direction: column;
     .galleryBannerContent{
-        width: 50%;
         text-align: center;
     }
 }
@@ -32,5 +31,24 @@
             
         }
         
+    }
+}
+
+@media screen and (max-width: var.$responsive-width){
+    .imageGallerySection{
+        .imageGallery{
+            display: flex;
+            flex-direction: column;
+            flex-flow: wrap;
+            .imageContainer{
+                width: 49%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px){
+    .imageGallerySection .imageGallery .imageContainer{
+        width: 100%;
     }
 }

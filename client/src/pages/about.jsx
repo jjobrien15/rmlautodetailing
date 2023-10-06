@@ -22,7 +22,7 @@ const about = () => {
   return (
     <div>
       <Navbar />
-      <div className="banner">
+      <div className="banner container">
         <div className="aboutContent">
           <h1>Meet the team</h1>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis harum, nobis dolores ex accusamus dolor? Eligendi ab dignissimos quam voluptas sint sapiente aliquam in, nemo adipisci quos odio doloribus accusamus?</p>

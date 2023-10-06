@@ -70,7 +70,6 @@
         .serviceDescription{
             color: var.$white;
             background-color: var.$darkGray;
-            height: 100px;
             overflow: hidden;
         }
         .hideServiceDescription{
@@ -80,7 +79,7 @@
             transition: all 0.3s ease;
         }
         .showServiceDescription{
-            height: 100px;
+            height: 100%;
             transition: all 0.3s ease;
         }
         .servicePrice{
