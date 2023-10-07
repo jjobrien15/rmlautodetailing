@@ -39,6 +39,8 @@ const Login = () => {
     setFormValues({...formValues, [e.target.name]: e.target.value})
   }
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   //Used to set cookes when user logs in successfully
   const [_, setCookies] = useCookies(["access_token"])
 
@@ -50,9 +52,16 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3001/auth/login", { ...formValues });
-      setCookies("access_token", response.data.token);
-      window.localStorage.setItem("userID", response.data.userID);
-      navigate("/Profile");
+      if(!response.data.message){
+        setCookies("access_token", response.data.token);
+        window.localStorage.setItem("userID", response.data.userID);
+        navigate("/Profile");
+      }else{
+        setErrorMessage(response.data.message);
+      }
+      
+      
+
     } catch (err){
       console.log(err);
     }
@@ -65,6 +74,7 @@ const Login = () => {
         <div className="formPageContent">
           <h1>Login</h1>
               <form onSubmit={onSubmit}>
+                <span className="errorMessage">{errorMessage}</span>
               {inputs.map((input, key) => (
                 <FormInput
                   {...input}

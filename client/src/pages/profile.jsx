@@ -27,9 +27,9 @@ const profile = () => {
                     `http://localhost:3001/auth/profile/${userID}`,
                     { headers: { auth: cookies.access_token } }
                 );
-                setUserInfo(response.data);
+                    setUserInfo(response.data);
             } catch (err) {
-                //console.log(err);
+                console.log(err);
             }
         }
         fetchUser();

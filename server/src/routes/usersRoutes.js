@@ -11,10 +11,13 @@ const router = express.Router();
 export const verifyToken = (req, res, next) => {
     const token = req.headers.auth;
     if (!token) {
-        res.send()
+        res.json({message:"No token found plase login..."});
+        //res.redirect("../"); /CANNOT REDIRECT TO CLIENT SIDE LOGIN TO PROTECT PAGES.
     } else {
         jwt.verify(token, process.env.ACCESS_TOKEN, (err) => {
-            if (err) return res.sendStatus(403);
+            if (err){
+                res.sendStatus(403);
+            } 
             next();
         })
     }
