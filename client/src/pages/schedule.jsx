@@ -30,7 +30,7 @@ const schedule = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3001/appointments/createAppointment", appointment)
+            await axios.post(`${import.meta.env.BASE_URI}/appointments/createAppointment`, appointment)
             alert("Appointment Created!");
         } catch (err) {
             console.log(err);

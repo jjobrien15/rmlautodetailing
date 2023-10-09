@@ -3,6 +3,7 @@ import ServiceCards from "../components/ServiceCards"
 import Testimonials from "../components/Testimonials"
 import Footer from "../components/Footer"
 import "../stylesheets/home.scss"
+import "dotenv/config";
 
 const home = () => {
   

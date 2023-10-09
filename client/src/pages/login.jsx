@@ -5,6 +5,7 @@ import { useState } from "react"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import "dotenv/config";
 
 const Login = () => {
 
@@ -51,7 +52,7 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/auth/login", { ...formValues });
+      const response = await axios.post(`${import.meta.env.BASE_URI}/auth/login`, { ...formValues });
       if(!response.data.message){
         setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.userID);
@@ -59,8 +60,6 @@ const Login = () => {
       }else{
         setErrorMessage(response.data.message);
       }
-      
-      
 
     } catch (err){
       console.log(err);
