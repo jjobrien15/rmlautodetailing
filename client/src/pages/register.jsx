@@ -69,7 +69,7 @@ const register = () => {
     e.preventDefault();
 
     try {
-      await axios.post(`${import.meta.env.BASE_URI}/auth/register`, { ...formValues });
+      await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/register`, { ...formValues });
       alert("Registration successful! Please login.");
     } catch (err){
       console.log(err);

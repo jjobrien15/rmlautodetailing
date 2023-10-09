@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom"
 import { useCookies } from "react-cookie"
 import axios from "axios"
 import { useGetUserID } from "../hooks/useGetUserID"
-import "dotenv/config";
 
 const profile = () => {
 
@@ -25,7 +24,7 @@ const profile = () => {
         const fetchUser = async () => {
             try {
                 const response = await axios.get(
-                    `${import.meta.env.BASE_URI}/auth/profile/${userID}`,
+                    `${import.meta.env.VITE_BASE_URI}/auth/profile/${userID}`,
                     { headers: { auth: cookies.access_token } }
                 );
                     setUserInfo(response.data);
