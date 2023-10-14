@@ -2,13 +2,19 @@
 
 .profileContent{
     color: var.$white;
-    .profileNav{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    .profileNav, .profileInformation{
         display: flex;
-        flex-direction: column;
         background-color: var.$darkGray;
         padding: var.$form-padding;
         border-radius: var.$form-border-radius;
         text-align: center;
+       
+    }
+    .profileNav{
+        flex-direction: column;
         img{
             width: 250px;
             height: 250px;
@@ -17,13 +23,17 @@
         }
         ul{
             list-style-type: none;
-            li a{
-                color: var.$white;
-                &:hover{
-                color: var.$gold;
-                }
+            padding: 2rem;
+            li{
+                margin: 1rem;
+                .profileNavLinks{
+                    color: var.$white;
+                    padding: 0.5rem;
+                    &:hover{
+                    color: var.$gold;
+                    }
                }
+            }
         }
-       
-    }
+    }   
 }

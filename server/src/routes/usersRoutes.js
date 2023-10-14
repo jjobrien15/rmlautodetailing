@@ -3,26 +3,9 @@ import express from "express";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { UserModel } from "../models/usersModel.js";
+import verifyToken from "../middleware/verifyToken.js";
 
 const router = express.Router();
-
-
-
-export const verifyToken = (req, res, next) => {
-    const token = req.headers.auth;
-    if (!token) {
-        res.json({message:"No token found plase login..."});
-        //res.redirect("../"); /CANNOT REDIRECT TO CLIENT SIDE LOGIN TO PROTECT PAGES.
-    } else {
-        jwt.verify(token, process.env.ACCESS_TOKEN, (err) => {
-            if (err){
-                res.sendStatus(403);
-            } 
-            next();
-        })
-    }
-}
-
 
 
 //Register a new user and hash password

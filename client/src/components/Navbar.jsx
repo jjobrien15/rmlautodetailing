@@ -17,28 +17,22 @@ const Navbar = () => {
 
   const NavLinks = [
     { name: "Home", href: "/" },
-    { name: "Services", href: "Services" },
-    { name: "Gallery", href: "Gallery" },
-    { name: "About", href: "About" },
-    { name: "Schedule", href: "Schedule" },
+    { name: "Services", href: "/Services" },
+    { name: "Gallery", href: "/Gallery" },
+    { name: "About", href: "/About" },
+    { name: "Schedule", href: "/Schedule" },
 ]
+
+const RightNavLinks = [
+  { name: "Login", href: "/Login" },
+]
+
+const RightNavLinksLoggedIn = [
+  { name: "Profile", href: "/Profile"},
+]
+
   //useNavigate hook to login page on logout
   const navigate = useNavigate();
-
-  //Logout function
-  const logout = () => {
-    setCookies("access_token", "")
-    window.localStorage.removeItem("userID")
-    navigate("/login")
-  }
-
-  const RightNavLinks = [
-    { name: "Login", href: "Login" },
-  ]
-  
-  const RightNavLinksLoggedIn = [
-    { name: "Profile", href: "Profile"},
-  ]
 
   //Effect that will handle logic for scrolling away from top of screen to add style/class to Navbar
   useEffect(() => {

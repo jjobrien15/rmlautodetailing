@@ -10,6 +10,8 @@ import Login from "./pages/login.jsx"
 import Schedule from './pages/schedule.jsx'
 import Register from "./pages/register.jsx"
 import Profile from "./pages/profile.jsx"
+import Appointments from "./pages/appointments.jsx"
+import UserProfile from "./pages/userProfile.jsx"
 import ErrorPage from "./pages/error-page.jsx"
 import "./stylesheets/main.scss"
 
@@ -47,6 +49,16 @@ const router = createBrowserRouter([
   {
     path: "/Profile",
     element: <Profile />,
+    children: [
+        {
+          path: "UserProfile",
+          element:<UserProfile />,
+        },
+        {
+          path: "Appointments",
+          element:<Appointments />,
+        },
+    ]
   },
   {
     path: "/Schedule",
