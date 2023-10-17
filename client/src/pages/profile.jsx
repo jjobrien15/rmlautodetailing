@@ -11,7 +11,7 @@ import { Outlet, Link } from "react-router-dom"
 const profile = () => {
 
     //Use cookies to check if a user is logged in
-    const [cookies, setCookies] = useCookies(["access_token"])
+    const [cookies, setCookie, removeCookie] = useCookies(["access_token"])
     const [userInfo, setUserInfo] = useState({})
 
     //useNavigate hook to redirect on logout
@@ -23,9 +23,10 @@ const profile = () => {
     //Logout function clears access token from cookies 
     //and userID from localstorge then redirects to home page
     const logout = () => {
-        setCookies("access_token", "")
+        setCookie("access_token", "", {path: "/"})
+        removeCookie("access_token")
         window.localStorage.removeItem("userID")
-        navigate("/")
+        navigate("/Login")
     }
 
     //Use Effect will load current user info
@@ -43,7 +44,7 @@ const profile = () => {
             }
         }
         fetchUser();
-    }, [userInfo])
+    }, [])
 
   return (
     <div className="banner">

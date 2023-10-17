@@ -28,7 +28,7 @@ const RightNavLinks = [
 ]
 
 const RightNavLinksLoggedIn = [
-  { name: "Profile", href: "/Profile"},
+  { name: "Profile", href: "/Profile/UserProfile"},
 ]
 
   //useNavigate hook to login page on logout
@@ -57,9 +57,10 @@ const RightNavLinksLoggedIn = [
         setNavCollapsed(false);
       }
     }
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-    }, [])
+  }, [])
 
   const handleNavbarCollapse = () => {
       setNavCollapsed(!navCollapsed);
@@ -78,7 +79,7 @@ const RightNavLinksLoggedIn = [
           {NavLinks.map((link) => (
               <li key={link.name}><a href={link.href}>{link.name}</a></li>
           ))}
-        {!cookies.access_token ?
+        {cookies.access_token == null ?
             RightNavLinks.map((link) => (
               <li key={link.name}><a href={link.href}>{link.name}</a></li>
             ))
