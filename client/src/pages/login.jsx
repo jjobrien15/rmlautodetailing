@@ -53,7 +53,7 @@ const Login = () => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/login`, { ...formValues });
       if(!response.data.message){
-        setCookies("access_token", response.data.token, {path: "/"});
+        setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.userID);
         navigate("/Profile");
       }else{
