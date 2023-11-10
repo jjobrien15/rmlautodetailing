@@ -30,17 +30,20 @@ const profile = () => {
     }
 
     //Use Effect will load current user info
-    //ISSUE: Loads when user logins in and is navigated from login page but will not load when returning to login page.
     useEffect(() => {
         const fetchUser = async () => {
-            try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_BASE_URI}/auth/profile/${userID}`,
-                    { headers: { auth: cookies.access_token } }
-                );
+            if (userID) {
+                try {
+                    const response = await axios.get(
+                        `${import.meta.env.VITE_BASE_URI}/auth/profile/${userID}`,
+                        { headers: { auth: cookies.access_token } }
+                    );
                     setUserInfo(response.data);
-            } catch (err) {
-                console.log(err);
+                } catch (err) {
+                    console.log(err);
+                }
+            } else {
+                return navigate("/login");
             }
         }
         fetchUser();

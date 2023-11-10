@@ -44,10 +44,9 @@ router.get("/appointments/ids", async (req, res) => {
    }
 });
 
-router.get("/appointments", async (req, res) => {
+router.get("/appointments/:userID", async (req, res) => {
     try {
-        const user = await UserModel.findById(req.body.userID);
-        const userAppointments = await appointmentModel.find({_id: {$in: user.appointments}});
+        const userAppointments = await appointmentModel.find({userInfo: req.params.userID});
         res.json({ userAppointments });
     } catch (err) {
         console.log(err);

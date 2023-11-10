@@ -55,7 +55,7 @@ const Login = () => {
       if(!response.data.message){
         setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.userID);
-        navigate("/Profile");
+        navigate("/Profile/UserProfile");
       }else{
         setErrorMessage(response.data.message);
       }
