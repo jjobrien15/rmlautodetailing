@@ -2,9 +2,10 @@ import { useGetUserID } from "../hooks/useGetUserID";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { appointmentModel } from "../../../server/src/models/appointmentsModel";
 
 const appointments = () => {
-    const [appointments, setAppointments] = useState({})
+    const [userAppointments, setUserAppointments] = useState([])
 
     //useNavigate hook to redirect on logout
     const navigate = useNavigate();
@@ -16,10 +17,10 @@ const appointments = () => {
         const fetchAppointments = async () => {
             if (userID) {
                 try {
-                    const response = await axios.get(
+                    const appts = await axios.get(
                         `${import.meta.env.VITE_BASE_URI}/appointments/appointments/${userID}`
                     );
-                    setAppointments(response.data);
+                    setUserAppointments(appts)
                 } catch (err) {
                     console.log(err);
                 }
@@ -33,7 +34,7 @@ const appointments = () => {
     return (
     <div>
             <h1>Appointments</h1>
-            { console.log(appointments) }
+            {console.log(userAppointments.data)}
     </div>
     )
 }
