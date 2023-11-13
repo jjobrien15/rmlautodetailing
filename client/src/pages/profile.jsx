@@ -11,11 +11,8 @@ import { Outlet, Link } from "react-router-dom"
 const profile = () => {
 
     //Use cookies to check if a user is logged in
-    const [cookies, setCookie, removeCookie] = useCookies(["access_token"])
+    const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
     const [userInfo, setUserInfo] = useState({})
-
-    //useNavigate hook to redirect on logout
-    const navigate = useNavigate();
 
     //Custome hook to get user id from local storage
     const userID = useGetUserID();
@@ -34,16 +31,20 @@ const profile = () => {
         const fetchUser = async () => {
             if (userID) {
                 try {
-                    const response = await axios.get(
+                    const uInfo = await axios.get(
                         `${import.meta.env.VITE_BASE_URI}/auth/profile/${userID}`,
-                        { headers: { auth: cookies.access_token } }
+                        {
+                            headers: {
+                                auth: cookies.access_token
+                            }
+                        }
                     );
-                    setUserInfo(response.data);
+                    setUserInfo(uInfo.data);
                 } catch (err) {
                     console.log(err);
                 }
             } else {
-                return navigate("/login");
+                return useNavigate("/login");
             }
         }
         fetchUser();
@@ -57,8 +58,8 @@ const profile = () => {
                   <img src={testImg} alt="Profile Image" />
                   <h3>{userInfo.fname} {userInfo.lname}</h3>
                   <ul>
-                      <li><Link className="profileNavLinks" to="UserProfile">Profile</Link></li>
                       <li><Link className="profileNavLinks" to="Appointments">Appointments</Link></li>
+                      <li><Link className="profileNavLinks" to="EditProfile">Edit Profile</Link></li>
                       <li><a className="profileNavLinks" onClick={logout}>Logout</a></li>
                   </ul>
               </div>

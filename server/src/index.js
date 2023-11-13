@@ -16,4 +16,6 @@ app.use("/appointments", appointmentRouter);
 
 mongoose.connect("mongodb+srv://" + process.env.MONGODB_NAME + ":" + process.env.MONGODB_PASSWORD + "@rml.1q1kyzz.mongodb.net/RMLUsers?retryWrites=true&w=majority");
 
-app.listen(3001, () => (console.log("Server is running... ")));
+app.listen(3001, () => (
+    console.log("Server is running... ")
+));

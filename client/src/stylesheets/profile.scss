@@ -5,7 +5,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 2rem;
-    .profileNav, .profileInformation{
+    .profileNav{
         display: flex;
         background-color: var.$darkGray;
         padding: var.$form-padding;
@@ -29,11 +29,17 @@
                 .profileNavLinks{
                     color: var.$white;
                     padding: 0.5rem;
+                    cursor: pointer;
                     &:hover{
                     color: var.$gold;
                     }
                }
             }
         }
+    }
+    .profileInformation{
+       .edit-profile{
+        height: 100%;
+       }
     }   
 }

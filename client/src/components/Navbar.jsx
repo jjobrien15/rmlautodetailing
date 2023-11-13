@@ -79,7 +79,7 @@ const RightNavLinksLoggedIn = [
           {NavLinks.map((link) => (
               <li key={link.name}><a href={link.href}>{link.name}</a></li>
           ))}
-        {cookies.access_token == null ?
+        {!cookies.access_token ?
             RightNavLinks.map((link) => (
               <li key={link.name}><a href={link.href}>{link.name}</a></li>
             ))

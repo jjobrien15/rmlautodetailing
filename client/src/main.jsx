@@ -12,9 +12,8 @@ import Schedule from './pages/schedule.jsx'
 import Register from "./pages/register.jsx"
 import Profile from "./pages/profile.jsx"
 import Appointments from "./pages/appointments.jsx"
-import UserProfile from "./pages/userProfile.jsx"
+import EditProfile from "./pages/edit-profile.jsx"
 import ErrorPage from "./pages/error-page.jsx"
-import { Navigate } from 'react-router-dom'
 import "./stylesheets/main.scss"
 
 
@@ -55,8 +54,8 @@ const router = createBrowserRouter([
     children: [
         {
           index: true,
-          path: "UserProfile",
-          element:<UserProfile />,
+          path: "EditProfile",
+          element: <EditProfile />,
         },
         {
           path: "Appointments",

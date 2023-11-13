@@ -20,7 +20,7 @@ const appointments = () => {
                     const appts = await axios.get(
                         `${import.meta.env.VITE_BASE_URI}/appointments/appointments/${userID}`
                     );
-                    setUserAppointments(appts)
+                    setUserAppointments(appts.data)
                 } catch (err) {
                     console.log(err);
                 }
@@ -29,12 +29,14 @@ const appointments = () => {
             }
         }
         fetchAppointments();
-    }, [])
+    }, [userID])
 
     return (
     <div>
             <h1>Appointments</h1>
-            {console.log(userAppointments.data)}
+            {userAppointments.map((appointment, key) => (
+                <p key={key}>{appointment.service}</p>
+            ))}
     </div>
     )
 }
