@@ -1,7 +1,7 @@
 import express from "express";
 import { appointmentModel } from "../models/appointmentsModel.js";
 import { UserModel } from "../models/usersModel.js";
-//import { Types } from "mongoose";
+import { Types } from "mongoose";
 
 const router = express.Router();
 
