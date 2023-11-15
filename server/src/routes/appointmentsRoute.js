@@ -1,8 +1,7 @@
 import express from "express";
-import mongoose from "mongoose";
 import { appointmentModel } from "../models/appointmentsModel.js";
 import { UserModel } from "../models/usersModel.js";
-import { ObjectId } from "mongodb";
+import { Types } from "mongoose";
 
 const router = express.Router();
 
@@ -48,7 +47,7 @@ router.get("/appointments/ids", async (req, res) => {
 
 router.get("/appointments/:userID", async (req, res) => {
     try {
-        const userAppointments = await appointmentModel.find({ "clientInfo": new mongoose.Types.ObjectId(req.params.userID)});
+        const userAppointments = await appointmentModel.find({ "clientInfo": new Types.ObjectId(req.params.userID)});
         res.json(userAppointments);
     } catch (err) {
         console.log(err);

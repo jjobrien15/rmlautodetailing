@@ -28,7 +28,7 @@ const RightNavLinks = [
 ]
 
 const RightNavLinksLoggedIn = [
-  { name: "Profile", href: "/Profile/UserProfile"},
+  { name: "Profile", href: "/Profile/EditProfile"},
 ]
 
   //useNavigate hook to login page on logout
