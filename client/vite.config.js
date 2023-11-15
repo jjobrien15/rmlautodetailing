@@ -9,7 +9,7 @@ export default defineConfig({
     port: 3000,
   },
   build:{
-    coommonjsOptions: {
+    commonjsOptions: {
       strictRequires: true,
     },
   },
