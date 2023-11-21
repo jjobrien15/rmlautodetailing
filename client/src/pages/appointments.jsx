@@ -1,7 +1,6 @@
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { appointmentModel } from "../../../server/src/models/appointmentsModel";
 
 const appointments = () => {
@@ -17,10 +16,12 @@ const appointments = () => {
         const fetchAppointments = async () => {
             if (userID) {
                 try {
-                    const appts = await axios.get(
-                        `${import.meta.env.VITE_BASE_URI}/appointments/appointments/${userID}`
+                    const response = await fetch(`${import.meta.env.VITE_BASE_URI}/appointments/appointments/${userID}`, {
+                            method: 'GET',
+                        }
                     );
-                    setUserAppointments(appts.data)
+                    const data = await response.json();
+                    setUserAppointments(data);
                 } catch (err) {
                     console.log(err);
                 }

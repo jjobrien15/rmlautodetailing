@@ -4,7 +4,6 @@ import "../stylesheets/profile.scss"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useCookies } from "react-cookie"
-import axios from "axios"
 import { useGetUserID } from "../hooks/useGetUserID"
 import { Outlet, Link } from "react-router-dom"
 
@@ -23,7 +22,7 @@ const profile = () => {
         setCookie("access_token", "", {path: "/"})
         removeCookie("access_token")
         window.localStorage.removeItem("userID")
-        navigate("/Login")
+        useNavigate("/Login")
     }
 
     //Use Effect will load current user info
@@ -31,15 +30,17 @@ const profile = () => {
         const fetchUser = async () => {
             if (userID) {
                 try {
-                    const uInfo = await axios.get(
+                    const response = await fetch(
                         `${import.meta.env.VITE_BASE_URI}/auth/profile/${userID}`,
                         {
+                            method: "GET",
                             headers: {
                                 auth: cookies.access_token
                             }
                         }
                     );
-                    setUserInfo(uInfo.data);
+                    const data = await response.json();
+                    setUserInfo(data);
                 } catch (err) {
                     console.log(err);
                 }

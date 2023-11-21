@@ -27,10 +27,10 @@ const userProfile = () => {
         e.preventDefault();
 
         try {
-        await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/register`, { ...formValues });
-        alert("Registration successful! Please login.");
+            await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/register`, { ...formValues });
+            alert("Registration successful! Please login.");
         } catch (err){
-        console.log(err);
+            console.log(err);ß
         }
 
     }
@@ -38,20 +38,22 @@ const userProfile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             if (userID) {
-                const uInfo = await axios.get(
+                const response = await fetch(
                     `${import.meta.env.VITE_BASE_URI}/auth/profile/${userID}`,
                     {
+                        method: "GET",
                         headers: {
                             auth: cookies.access_token
                         }
                     });
-                setUserInfo(uInfo.data);
+                const data = await response.json();
+                setUserInfo(data);
             } else {
                 return useNavigate("/login");
             }
         }
         fetchUser();
-    }, [])
+    }, [userID])
 
     const inputs = [
         {
