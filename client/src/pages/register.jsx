@@ -1,10 +1,13 @@
 import Navbar from "../components/Navbar"
+import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import FormInput from "../components/FormInput"
 import "../stylesheets/formPageStyles.scss"
 import axios from "axios"
 
 const register = () => {
+
+  const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
     fname: "",
@@ -73,6 +76,8 @@ const register = () => {
       alert("Registration successful! Please login.");
     } catch (err){
       console.log(err);
+    }finally{
+      navigate("/login");
     }
 
   }

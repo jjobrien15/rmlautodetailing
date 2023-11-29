@@ -4,7 +4,7 @@ import { useGetUserID } from "../hooks/useGetUserID"
 import axios from "axios"
 import { useCookies } from "react-cookie"
 import FormInput from "../components/FormInput"
-import "../stylesheets/formPageStyles.scss"
+import "../stylesheets/editProfile.scss"
 
 
 const userProfile = () => {
@@ -18,6 +18,8 @@ const userProfile = () => {
     
     const userID = useGetUserID();
 
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
     }
@@ -28,9 +30,9 @@ const userProfile = () => {
 
         try {
             await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/register`, { ...formValues });
-            alert("Registration successful! Please login.");
+            navigate("/login");
         } catch (err){
-            console.log(err);ß
+            console.log(err);
         }
 
     }
@@ -38,18 +40,15 @@ const userProfile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             if (userID) {
-                const response = await fetch(
+                const response = await axios.get(
                     `${import.meta.env.VITE_BASE_URI}/auth/profile/${userID}`,
                     {
-                        method: "GET",
-                        headers: {
-                            auth: cookies.access_token
-                        }
+                        headers: {auth: cookies.access_token}
                     });
-                const data = await response.json();
+                const data = response.data;
                 setUserInfo(data);
             } else {
-                return useNavigate("/login");
+                return navigate("/login");
             }
         }
         fetchUser();
@@ -86,15 +85,15 @@ const userProfile = () => {
     
 
     return (
-        <div className="edit-profile formPageContent">
+        <div className="edit-profile">
             <h1>Edit Profile</h1>
             <form onSubmit={onSubmit}>
                 {inputs.map((input, key) => (
                     <FormInput {...input} key={key} value={formValues[input.name]} onChange={handleChange}/>
                 ))}
-                    <div className='formGroup'>
+                <div className='formGroup'>
                     <button type="submit" className='submitBtn'>Save Changes</button>
-            </div>
+                </div>
             </form>
         </div>
     )

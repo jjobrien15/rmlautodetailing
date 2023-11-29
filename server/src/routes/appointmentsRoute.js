@@ -54,4 +54,13 @@ router.get("/appointments/:userID", async (req, res) => {
    }
 });
 
+router.delete("/deleteAppointment/:apptID", async (req, res) => {   
+    try {
+        const userAppointment = await appointmentModel.deleteOne({ "_id": req.params.apptID});
+        res.json(userAppointment);
+    } catch (err) {
+        console.log(err);
+   }
+})
+
 export { router as appointmentRouter };

@@ -13,8 +13,7 @@ app.use(cors());
 app.use("/auth", userRouter);
 app.use("/appointments", appointmentRouter);
 
-
-mongoose.connect(process.env.CONN_STRING);
+mongoose.connect(process.env.CONN_STRING)
 
 app.listen(3001, () => (
     console.log("Server is running... ")

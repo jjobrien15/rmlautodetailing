@@ -1,0 +1,28 @@
+@use "./globalVariables.scss" as var;
+
+.appointmentsTable{
+    width: 100%;
+    text-align: left;
+    .appointmentsDateRow{
+        width: 25%;
+    }
+    .appointmentsServiceRow{
+        width: 50%;
+    }
+    .appointmentOptionsRow{
+        width: 25%;
+    }
+    .cancelBtn{
+        background-color: transparent;
+        border-radius: var.$form-border-radius;
+        border: none;
+        padding: 0.5rem;
+        color: red;
+        cursor: pointer;
+        &:hover{
+            background-color: red;
+            color: var.$white;
+        }
+    }
+}
+

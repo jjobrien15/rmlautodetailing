@@ -1,11 +1,12 @@
 import Navbar from "../components/Navbar"
 import testImg from "../assets/galleryImages/img1.jpg"
-import "../stylesheets/profile.scss"
+import "../stylesheets/profile.scss";
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useCookies } from "react-cookie"
 import { useGetUserID } from "../hooks/useGetUserID"
 import { Outlet, Link } from "react-router-dom"
+import axios from "axios"
 
 const profile = () => {
 
@@ -16,13 +17,15 @@ const profile = () => {
     //Custome hook to get user id from local storage
     const userID = useGetUserID();
 
-    //Logout function clears access token from cookies 
+    const navigate = useNavigate();
+
+     //Logout function clears access token from cookies 
     //and userID from localstorge then redirects to home page
     const logout = () => {
         setCookie("access_token", "", {path: "/"})
         removeCookie("access_token")
         window.localStorage.removeItem("userID")
-        useNavigate("/Login")
+        navigate("/login")
     }
 
     //Use Effect will load current user info
@@ -30,44 +33,46 @@ const profile = () => {
         const fetchUser = async () => {
             if (userID) {
                 try {
-                    const response = await fetch(
+                    const response = await axios.get(
                         `${import.meta.env.VITE_BASE_URI}/auth/profile/${userID}`,
                         {
-                            method: "GET",
                             headers: {
                                 auth: cookies.access_token
                             }
                         }
                     );
-                    const data = await response.json();
-                    setUserInfo(data);
+                    setUserInfo(response.data);
                 } catch (err) {
                     console.log(err);
                 }
             } else {
-                return useNavigate("/login");
+                navigate("/login");
             }
         }
         fetchUser();
-    }, [])
+    }, [userID])
 
   return (
-    <div className="banner">
+    <div className="profile">
           <Navbar />
-          <div className="profileContent container">
-              <div className="profileNav">
-                  <img src={testImg} alt="Profile Image" />
-                  <h3>{userInfo.fname} {userInfo.lname}</h3>
-                  <ul>
-                      <li><Link className="profileNavLinks" to="Appointments">Appointments</Link></li>
-                      <li><Link className="profileNavLinks" to="EditProfile">Edit Profile</Link></li>
-                      <li><a className="profileNavLinks" onClick={logout}>Logout</a></li>
-                  </ul>
-              </div>
-              <div className="profileInformation">
-                  <Outlet />
-              </div>
-          </div>
+            <div className="profileContent">
+                <div className="profileHeader">
+                    <div className="profileNavUserInfo">
+                        <img src={testImg} alt="Profile Image" />
+                        <h3>{userInfo.fname} {userInfo.lname}</h3>
+                    </div>
+                    <a className="profileLogout" onClick={logout}>Logout</a>
+                </div>
+                <div className="profileInformation">
+                    <ul className="profileNav">
+                        <li><Link className="profileNavLinks" to="Appointments">Appointments</Link></li>
+                        <li><Link className="profileNavLinks" to="EditProfile">Edit Profile</Link></li>
+                    </ul>
+                    <div className="profileOutlet">
+                        <Outlet />
+                    </div>
+                </div>
+            </div>
     </div>
   )
 }

@@ -1,0 +1,26 @@
+@use "./globalVariables.scss" as var;
+
+
+.edit-profile{
+    color: var.$darkGray;
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: var.$form-gap;
+        .formGroup{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 30%;
+            input{
+                border-radius: var.$form-border-radius;
+                border: 1px solid var.$darkGray;
+                background-color: var.$darkGray;
+                padding: 0.5rem;
+            } 
+        }
+        .formErrMessage{
+            display: none;
+        }
+    }
+}

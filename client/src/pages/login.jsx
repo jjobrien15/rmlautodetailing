@@ -42,7 +42,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   //Used to set cookes when user logs in successfully
-  const [_, setCookies] = useCookies(["access_token"])
+  const [cookies, setCookies] = useCookies(["access_token"])
 
   //useNavigate hook to navigate user after login
   const navigate = useNavigate()
