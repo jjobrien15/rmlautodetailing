@@ -1,16 +1,18 @@
 //Navbar css in located in main.scss
-import { useState, useEffect } from "react"
-import RMLLogo from "../assets/RMLLogo.png"
-import { useCookies } from "react-cookie"
-import { useNavigate } from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faMultiply } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from "react";
+import RMLLogo from "../assets/RMLLogo.png";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faMultiply } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   //State to check if scrolled away from top of page to add styling to navbar if moved
-  const [scrolling, setScrolling] = useState(false)
+  const [scrolling, setScrolling] = useState(false);
   //State to check if navbar is collapsed or not
-  const [navCollapsed, setNavCollapsed] = useState(false)
+  const [navCollapsed, setNavCollapsed] = useState(false);
+  //State of proifle menu dropdown
+  const [profileDropdown, setProfileDropdown] = useState(false);
 
   //Use cookies to check if a user is logged in
   const [cookies, setCookies] = useCookies(["access_token"]);
@@ -20,15 +22,21 @@ const Navbar = () => {
     { name: "Services", href: "/Services" },
     { name: "Gallery", href: "/Gallery" },
     { name: "About", href: "/About" },
-    { name: "Schedule", href: "/Schedule" },
+    /*{ name: "Schedule", href: "/Schedule" },*/
 ]
 
 const RightNavLinks = [
   { name: "Login", href: "/Login" },
 ]
 
-const RightNavLinksLoggedIn = [
+/*const RightNavLinksLoggedIn = [
   { name: "Profile", href: "/Profile/Appointments"},
+]*/
+  
+const ProfileMenu = [
+  { name: "Your Appointments", href: "/Profile/Appointments" },
+  { name: "Schedule Appointment", href: "/Profile/Schedule" },
+  {name: "Edit Profile", href: "/Profile/EditProfile"},
 ]
 
   //useNavigate hook to login page on logout
@@ -64,7 +72,12 @@ const RightNavLinksLoggedIn = [
 
   const handleNavbarCollapse = () => {
       setNavCollapsed(!navCollapsed);
-   }
+  }
+  
+  const handleProfileDropdown = () => {
+    setProfileDropdown(!profileDropdown);
+    console.log(profileDropdown);
+  }
 
   return (
     <nav className={`${scrolling || navCollapsed ? "scrolling" : ""}`}>
@@ -84,9 +97,14 @@ const RightNavLinksLoggedIn = [
               <li key={link.name}><a href={link.href}>{link.name}</a></li>
             ))
             :
-            RightNavLinksLoggedIn.map((link) => (
-              <li key={link.name}><a href={link.href}>{link.name}</a></li>
-            ))
+          <li className={`profileMenu ${profileDropdown ? "dropdown" : ""}`}>
+              <button className="profileBtn" onClick={handleProfileDropdown}>Profile</button>
+              <div className={profileDropdown ? "profileMenuLinksDropped" : "profileMenuLinks"}>
+              {ProfileMenu.map((link, key) => (
+                <a className="profileMenuLink" key={key} href={link.href}>{link.name}</a>
+              ))}
+              </div>
+            </li>
         }
         </ul>
 

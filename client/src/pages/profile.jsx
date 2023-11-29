@@ -7,6 +7,7 @@ import { useCookies } from "react-cookie"
 import { useGetUserID } from "../hooks/useGetUserID"
 import { Outlet, Link } from "react-router-dom"
 import axios from "axios"
+import appointments from "./appointments";
 
 const profile = () => {
 
@@ -27,6 +28,12 @@ const profile = () => {
         window.localStorage.removeItem("userID")
         navigate("/login")
     }
+
+    const profileLinks = [
+        { name: "Appointments", to: "Appointments" },
+        { name: "Schedule Appointment", to: "Schedule" },
+        { name: "Edit Profile", to: "EditProfile" },
+    ]
 
     //Use Effect will load current user info
     useEffect(() => {
@@ -64,9 +71,10 @@ const profile = () => {
                     <a className="profileLogout" onClick={logout}>Logout</a>
                 </div>
                 <div className="profileInformation">
-                    <ul className="profileNav">
-                        <li><Link className="profileNavLinks" to="Appointments">Appointments</Link></li>
-                        <li><Link className="profileNavLinks" to="EditProfile">Edit Profile</Link></li>
+                  <ul className="profileNav">
+                      {profileLinks.map((link, key) => (
+                          <li><Link className="profileNavLinks" key={key} to={link.to}>{link.name}</Link></li>
+                      ))}
                     </ul>
                     <div className="profileOutlet">
                         <Outlet />
