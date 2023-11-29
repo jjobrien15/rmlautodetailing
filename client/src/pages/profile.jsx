@@ -73,7 +73,7 @@ const profile = () => {
                 <div className="profileInformation">
                   <ul className="profileNav">
                       {profileLinks.map((link, key) => (
-                          <li><Link className="profileNavLinks" key={key} to={link.to}>{link.name}</Link></li>
+                          <li key={key}><Link className="profileNavLinks" to={link.to}>{link.name}</Link></li>
                       ))}
                     </ul>
                     <div className="profileOutlet">

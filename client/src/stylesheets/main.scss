@@ -34,6 +34,7 @@ a{
 .scrolling{
     background-color: var.$darkGray;
     height: var.$responsive-nav-height;
+    box-shadow: 0 1px 10px var.$darkGray;
 }
 
 .banner{
@@ -99,7 +100,7 @@ nav{
         gap: 2rem;
         list-style-type: none;
         li {
-            a, .profileBtn{
+            a, .navProfileBtn{
                 position: relative;
                 color: var.$white;
                 padding: 1.25rem;
@@ -109,7 +110,7 @@ nav{
                     content: "";
                     position: absolute;
                     bottom: 0;
-                    left: 50%;
+                    left: 0;
                     height: 3px;
                     width: 0;
                     background-color: var.$gold;
@@ -124,21 +125,26 @@ nav{
                     left: 0;
                 }
             }
-            .profileBtn{
-                border: none; 
-                background-color: transparent;
-                cursor: pointer;
-            }
-            .profileMenuLinks{
-                display: none;
-            }
-            .profileMenuLinksDropped{
-                display: block;
-            }
+            
+        }
+        
+        .navProfileBtn{
+            border: none; 
+            background-color: transparent;
+            cursor: pointer;
+        }
+        .navProfileMenu{
+            display: none;
+        }
+        .navProfileBtnLink:hover .navProfileMenu{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            background-color: var.$darkGray;
         }
     }
 }//End Nav
-
+//{profileDropdown ? "profileMenuLinksDropped" : "profileMenuLinks"}
 
 .scrollingSocials{
     background-color: var.$black;
@@ -169,7 +175,7 @@ nav{
 
 
 .footer{
-    background-color: var.$black;
+    background-color: var.$darkGray;
     color: var.$white;
     .footerContent{
         display: grid;
@@ -230,16 +236,12 @@ nav{
         padding: 10%;
     }
     nav{
-
-        nav .collapsed {
-            background-color: var.$black;
-        }
         .collapsed{
             position: fixed;
             top: var.$responsive-nav-height;
             left: 0;
             width: 100%;
-            background-color: var.$black;
+            background-color: var.$darkGray;
             display: flex;
             flex-direction: column;
             transition: all 0.3s ease;

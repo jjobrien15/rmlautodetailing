@@ -80,7 +80,7 @@ const ProfileMenu = [
   }
 
   return (
-    <nav className={`${scrolling || navCollapsed ? "scrolling" : ""}`}>
+    <nav className={`${scrolling || navCollapsed || profileDropdown ? "scrolling" : ""}`}>
   
         <div className="logo"><a href="/"><img src={RMLLogo} alt="RML Auto Detailing" /></a></div>
         
@@ -97,12 +97,12 @@ const ProfileMenu = [
               <li key={link.name}><a href={link.href}>{link.name}</a></li>
             ))
             :
-          <li className={`profileMenu ${profileDropdown ? "dropdown" : ""}`}>
-              <button className="profileBtn" onClick={handleProfileDropdown}>Profile</button>
-              <div className={profileDropdown ? "profileMenuLinksDropped" : "profileMenuLinks"}>
-              {ProfileMenu.map((link, key) => (
-                <a className="profileMenuLink" key={key} href={link.href}>{link.name}</a>
-              ))}
+          <li className="navProfileBtnLink">
+              <button className="navProfileBtn">Profile</button>
+              <div className="navProfileMenu">
+                {ProfileMenu.map((link, key) => (
+                  <a className="navProfileMenuLink" key={key} href={link.href}>{link.name}</a>
+                ))}
               </div>
             </li>
         }
