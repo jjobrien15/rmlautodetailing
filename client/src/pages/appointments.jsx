@@ -1,10 +1,12 @@
+import Schedule from "../pages/schedule";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import "../stylesheets/appointments.scss"
+import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBan } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faPlus } from '@fortawesome/free-solid-svg-icons'
+import axios from "axios";
+import Popup from "reactjs-popup"
+import "../stylesheets/appointments.scss"
 
 const appointments = () => {
     const [userAppointments, setUserAppointments] = useState([])
@@ -48,31 +50,37 @@ const appointments = () => {
 
 
     return (
-    <div>
+    <div> 
+        <div className="appointmentsHeader">
             <h1>Appointments</h1>
-            <table className="appointmentsTable">
-                <thead>
-                    <tr>
-                        <th className="appointmentDateRow">Date</th>
-                        <th className="appointmentServiceRow">Service</th>
-                        <th className="appointmentOptionsRow">Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {userAppointments.length == 0 ? <tr><td>You have no scheduled appointments...</td></tr> :
-                userAppointments.map((appointment, key) => (
-                    <tr key={key} className="userAppointment">
-                        <td>{new Date(appointment.serviceDate).toLocaleString('en-US',{ month: "long", day: "numeric", year: "numeric"})}</td>
-                        <td>{appointment.service}</td>
-                        <td>
-                            <button className="cancelBtn" onClick={() => handleCancelAppointment(appointment._id)}>
-                                <FontAwesomeIcon icon={faBan} />
-                            </button>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+                {/*<Link className="profileNavLinks" to={"../Schedule"}>Book Appointment <FontAwesomeIcon icon={faPlus} /></Link>*/}
+            <Popup trigger={<button className="bookAppointmentBtn">Book Appointment <FontAwesomeIcon icon={faPlus} /></button> }modal nested>
+                <Schedule />
+            </Popup>
+            </div>
+        <table className="appointmentsTable">
+            <thead>
+                <tr>
+                    <th className="appointmentDateRow">Date</th>
+                    <th className="appointmentServiceRow">Service</th>
+                    <th className="appointmentOptionsRow">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+            {userAppointments.length == 0 ? <tr><td>You have no scheduled appointments...</td></tr> :
+            userAppointments.map((appointment, key) => (
+                <tr key={key} className="userAppointment">
+                    <td>{new Date(appointment.serviceDate).toLocaleString('en-US',{ month: "long", day: "numeric", year: "numeric"})}</td>
+                    <td>{appointment.service}</td>
+                    <td>
+                        <button className="cancelBtn" onClick={() => handleCancelAppointment(appointment._id)}>
+                            <FontAwesomeIcon icon={faBan} />
+                        </button>
+                    </td>
+                </tr>
+            ))}
+            </tbody>
+        </table>
     </div>
     )
 }

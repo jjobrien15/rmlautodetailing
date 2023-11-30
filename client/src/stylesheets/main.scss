@@ -106,6 +106,7 @@ nav{
                 padding: 1.25rem;
                 transition: all 0.3s ease;
                 font-size: 1rem;
+                cursor: pointer;
                 &::after{
                     content: "";
                     position: absolute;
@@ -135,9 +136,13 @@ nav{
         }
         .navProfileMenu{
             display: none;
+            &:hover{
+                //keep link hover effects
+            }
         }
         .navProfileBtnLink:hover .navProfileMenu{
             position: absolute;
+            top: var.$responsive-nav-height;
             display: flex;
             flex-direction: column;
             background-color: var.$darkGray;

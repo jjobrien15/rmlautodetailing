@@ -15,7 +15,7 @@ const Navbar = () => {
   const [profileDropdown, setProfileDropdown] = useState(false);
 
   //Use cookies to check if a user is logged in
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, setCookies, removeCookies] = useCookies(["access_token"]);
 
   const NavLinks = [
     { name: "Home", href: "/" },
@@ -28,15 +28,10 @@ const Navbar = () => {
 const RightNavLinks = [
   { name: "Login", href: "/Login" },
 ]
-
-/*const RightNavLinksLoggedIn = [
-  { name: "Profile", href: "/Profile/Appointments"},
-]*/
   
 const ProfileMenu = [
-  { name: "Your Appointments", href: "/Profile/Appointments" },
-  { name: "Schedule Appointment", href: "/Profile/Schedule" },
-  {name: "Edit Profile", href: "/Profile/EditProfile"},
+  { name: "My Appointments", href: "/Profile/Appointments" },
+  {name: "My Profile", href: "/Profile/EditProfile"},
 ]
 
   //useNavigate hook to login page on logout
@@ -79,6 +74,15 @@ const ProfileMenu = [
     console.log(profileDropdown);
   }
 
+   //Logout function clears access token from cookies 
+    //and userID from localstorge then redirects to home page
+    const logout = () => {
+      setCookies("access_token", "", {path: "/"})
+      removeCookies("access_token")
+      window.localStorage.removeItem("userID")
+      navigate("/login")
+  }
+
   return (
     <nav className={`${scrolling || navCollapsed || profileDropdown ? "scrolling" : ""}`}>
   
@@ -103,6 +107,7 @@ const ProfileMenu = [
                 {ProfileMenu.map((link, key) => (
                   <a className="navProfileMenuLink" key={key} href={link.href}>{link.name}</a>
                 ))}
+                <a className="navProfileMenuLink" onClick={logout}>Logout</a>
               </div>
             </li>
         }

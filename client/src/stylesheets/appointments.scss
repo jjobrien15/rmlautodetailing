@@ -1,6 +1,24 @@
 @use "./globalVariables.scss" as var;
 
+
+.appointmentsHeader{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    button{
+        background-color: var.$darkGray;
+        color: var.$gold;
+        border: none;
+        padding: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        &:hover{
+
+        }
+    }
+}
 .appointmentsTable{
+    font-family: var.$font-family;
     width: 100%;
     text-align: left;
     .appointmentsDateRow{

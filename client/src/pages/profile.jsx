@@ -20,19 +20,9 @@ const profile = () => {
 
     const navigate = useNavigate();
 
-     //Logout function clears access token from cookies 
-    //and userID from localstorge then redirects to home page
-    const logout = () => {
-        setCookie("access_token", "", {path: "/"})
-        removeCookie("access_token")
-        window.localStorage.removeItem("userID")
-        navigate("/login")
-    }
-
     const profileLinks = [
-        { name: "Appointments", to: "Appointments" },
-        { name: "Schedule Appointment", to: "Schedule" },
-        { name: "Edit Profile", to: "EditProfile" },
+        { name: "My Appointments", to: "Appointments" },
+        { name: "My Profile", to: "EditProfile" },
     ]
 
     //Use Effect will load current user info
@@ -68,7 +58,6 @@ const profile = () => {
                         <img src={testImg} alt="Profile Image" />
                         <h3>{userInfo.fname} {userInfo.lname}</h3>
                     </div>
-                    <a className="profileLogout" onClick={logout}>Logout</a>
                 </div>
                 <div className="profileInformation">
                   <ul className="profileNav">
