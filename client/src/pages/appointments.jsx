@@ -54,7 +54,7 @@ const appointments = () => {
         <div className="appointmentsHeader">
             <h1>Appointments</h1>
                 {/*<Link className="profileNavLinks" to={"../Schedule"}>Book Appointment <FontAwesomeIcon icon={faPlus} /></Link>*/}
-            <Popup trigger={<button className="bookAppointmentBtn">Book Appointment <FontAwesomeIcon icon={faPlus} /></button> }modal nested>
+            <Popup className="popupSchedule" trigger={<button className="bookAppointmentBtn">Book Appointment <FontAwesomeIcon icon={faPlus} /></button> }modal nested>
                 <Schedule />
             </Popup>
             </div>

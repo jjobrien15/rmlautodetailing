@@ -5,15 +5,16 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
+    margin: 1rem auto;
     button{
         background-color: var.$darkGray;
-        color: var.$gold;
+        color: var.$white;
         border: none;
         padding: 1rem;
         border-radius: 10px;
         cursor: pointer;
         &:hover{
-
+            color: var.$gold;
         }
     }
 }
@@ -21,6 +22,7 @@
     font-family: var.$font-family;
     width: 100%;
     text-align: left;
+    border-collapse: collapse;
     .appointmentsDateRow{
         width: 25%;
     }
@@ -42,5 +44,16 @@
             color: var.$white;
         }
     }
+    tr{
+        border-bottom: 1px solid var.$darkGray;
+    }
+    td{
+        padding: 1rem 0;
+    }
+    
+    .userAppointment td:last-child, .appointmentOptionsRow {
+       text-align:center;
+    }
+
 }
 

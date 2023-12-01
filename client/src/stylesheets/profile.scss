@@ -1,55 +1,53 @@
 @use "./globalVariables.scss" as var;
-
+.profile nav{
+    background-color: var.$darkGray !important;
+    box-shadow: 0 1px 10px var.$darkGray;
+}
 .profile{
+    margin-top: 4rem;
     color: var.$white;
     background-color: var.$gray;
-    .profileContent{
-        .profileHeader{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var.$form-padding;
-            background-color: var.$darkGray;
-            padding-top: 10rem;
-            .profileNavUserInfo{
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                img{
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 1000px;
-                    border: 2px solid var.$gold;
-                }
-            }
-            .profileLogout{
-                padding: 1rem;
-                cursor: pointer;
-                transition: ease 0.3s all;
-                &:hover{
-                    color: var.$gold;
-                    transition: ease 0.3s all;
-                }
-            }
-        }
         .profileInformation{
             display: grid;
-            grid-template-columns: 1fr 3fr;
+            grid-template-columns: 1fr 4fr;
             min-height: 100vh;
             color: var.$darkGray;
-            background-color: var.$gold;
+            background-color: var.$gray;
             .profileNav{
+                background-color: var.$darkGray;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;  
+                padding-top: 2rem;
+                box-shadow: 1px 0px 10px var.$darkGray;
+                .profileUser{
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    img{
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 1000px;
+                        border: 2px solid var.$gold;
+                    }
+                    h3{
+                        color: var.$white;
+                    }
+                }
+            }   
+            .profileNavLinks{
                 list-style: none;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
-                gap: 1rem;
                 padding: 1rem;
+                gap: 1rem;
                 background-color: var.$darkGray;
-                .profileNavLinks{
+                .profileNavLink{
+                    padding: 1rem;
                     color: var.$white;
-                    margin: 1rem auto;
                     transition: ease 0.3s all;
                     &:hover{
                         color: var.$gold;
@@ -62,4 +60,3 @@
             }
         }
     }
-} 

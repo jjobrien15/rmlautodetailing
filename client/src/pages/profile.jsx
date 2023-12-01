@@ -7,7 +7,6 @@ import { useCookies } from "react-cookie"
 import { useGetUserID } from "../hooks/useGetUserID"
 import { Outlet, Link } from "react-router-dom"
 import axios from "axios"
-import appointments from "./appointments";
 
 const profile = () => {
 
@@ -51,25 +50,23 @@ const profile = () => {
 
   return (
     <div className="profile">
-          <Navbar />
-            <div className="profileContent">
-                <div className="profileHeader">
-                    <div className="profileNavUserInfo">
-                        <img src={testImg} alt="Profile Image" />
-                        <h3>{userInfo.fname} {userInfo.lname}</h3>
-                    </div>
+        <Navbar />
+        <div className="profileInformation">
+            <div className="profileNav">
+                <div className="profileUser">
+                    <img src={testImg} alt="Profile Image" />
+                    <h3>{userInfo.fname} {userInfo.lname}</h3>
                 </div>
-                <div className="profileInformation">
-                  <ul className="profileNav">
-                      {profileLinks.map((link, key) => (
-                          <li key={key}><Link className="profileNavLinks" to={link.to}>{link.name}</Link></li>
-                      ))}
-                    </ul>
-                    <div className="profileOutlet">
-                        <Outlet />
-                    </div>
-                </div>
+                <ul className="profileNavLinks">
+                {profileLinks.map((link, key) => (
+                    <li key={key}><Link className="profileNavLink" to={link.to}>{link.name}</Link></li>
+                ))}
+                </ul>
             </div>
+            <div className="profileOutlet">
+                <Outlet />
+            </div>
+        </div>
     </div>
   )
 }
