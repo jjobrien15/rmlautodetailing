@@ -37,22 +37,6 @@ const userProfile = () => {
 
     }
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            if (userID) {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_BASE_URI}/auth/profile/${userID}`,
-                    {
-                        headers: {auth: cookies.access_token}
-                    });
-                const data = response.data;
-                setUserInfo(data);
-            } else {
-                return navigate("/login");
-            }
-        }
-        fetchUser();
-    }, [userID])
 
     const inputs = [
         {

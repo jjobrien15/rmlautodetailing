@@ -54,7 +54,6 @@ const profile = () => {
         <div className="profileInformation">
             <div className="profileNav">
                 <div className="profileUser">
-                    <img src={testImg} alt="Profile Image" />
                     <h3>{userInfo.fname} {userInfo.lname}</h3>
                 </div>
                 <ul className="profileNavLinks">

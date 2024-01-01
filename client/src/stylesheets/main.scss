@@ -80,11 +80,12 @@ nav{
     right: 0;
     display: flex;
     justify-content: space-between;
-    padding: 0 5%;
+    padding: 0 10%;
     align-items: center;
     font-weight: 400;
     background-color: transparent;
-    transition: ease 0.3s all;
+    transition: ease 0.3s all;  
+    height: var.$responsive-nav-height;
     .logo img{
         height: 40px;
     }
@@ -96,33 +97,22 @@ nav{
     ul{
         display: flex;
         align-items: center;
+        height: 100%;
         gap: 2rem;
         list-style-type: none;
         li {
+            height: 100%;
             a, .navProfileBtn{
+                display: flex;
+                align-items: center;
                 position: relative;
                 color: var.$white;
-                padding: 1.25rem;
+                height: 100%;
                 transition: all 0.3s ease;
-                font-size: 1rem;
+                font-size: 1rem; 
                 cursor: pointer;
-                &::after{
-                    content: "";
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    height: 3px;
-                    width: 0;
-                    background-color: var.$gold;
-                    border-radius: 100px;
-                    transition: all 0.3s ease;
-                }
                 &:hover{
                     color: var.$gold;
-                }
-                &:hover::after{
-                    width: 100%;
-                    left: 0;
                 }
             }
             
@@ -135,20 +125,27 @@ nav{
         }
         .navProfileMenu{
             display: none;
-            &:hover{
-                //keep link hover effects
+            border-radius: 0 0 1rem 1rem;
+            a{ 
+                padding: 1rem 2rem; 
+               
+                &:hover{
+                    color: var.$gold;
+                }
             }
         }
         .navProfileBtnLink:hover .navProfileMenu{
             position: absolute;
-            top: var.$responsive-nav-height;
+            right: 1rem;
             display: flex;
             flex-direction: column;
+            flex: 1;
+            flex-wrap: nowrap;
+            box-shadow: 0 2px 5px var.$darkGray;
             background-color: var.$darkGray;
         }
     }
 }//End Nav
-//{profileDropdown ? "profileMenuLinksDropped" : "profileMenuLinks"}
 
 .scrollingSocials{
     background-color: var.$black;
