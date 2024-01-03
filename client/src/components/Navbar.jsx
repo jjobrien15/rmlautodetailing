@@ -35,8 +35,9 @@ const RightNavLinks = [
 ]
   
 const ProfileMenu = [
-  { name: "My Appointments", href: "/Profile/Appointments" },
-  {name: "My Profile", href: "/Profile/EditProfile"},
+  { name: "My Appointments", href: "/Profile/MyAppointments" },
+  { name: "My Vehicles", href: "/Profile/MyVehicles" },
+  {name: "My Profile", href: "/Profile/MyProfile"},
 ]
 
   //useNavigate hook to login page on logout
@@ -70,7 +71,7 @@ const ProfileMenu = [
     return () => window.removeEventListener("resize", handleResize);
   }, [])
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchUser = async () => {
         if (userID) {
             const response = await axios.get(
@@ -84,7 +85,7 @@ const ProfileMenu = [
         }
     }
     fetchUser();
-}, [userID])
+}, [userID])*/
 
   const handleNavbarCollapse = () => {
       setNavCollapsed(!navCollapsed);
@@ -122,7 +123,7 @@ const ProfileMenu = [
             ))
             :
           <li className="navProfileBtnLink">
-            <button className="navProfileBtn">Hi, {userInfo.fname}</button>
+            <a href="/Profile/MyAppointments" className="navProfileBtn">My Profile</a>
               <div className="navProfileMenu">
                 {ProfileMenu.map((link, key) => (
                   <a className="navProfileMenuLink" key={key} href={link.href}>{link.name}</a>

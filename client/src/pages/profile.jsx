@@ -20,8 +20,9 @@ const profile = () => {
     const navigate = useNavigate();
 
     const profileLinks = [
-        { name: "My Appointments", to: "Appointments" },
-        { name: "My Profile", to: "EditProfile" },
+        { name: "My Appointments", to: "MyAppointments" },
+        { name: "My Vehicles", to: "MyVehicles" },
+        { name: "My Profile", to: "MyProfile" },
     ]
 
     //Use Effect will load current user info

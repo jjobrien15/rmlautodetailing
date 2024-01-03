@@ -47,7 +47,7 @@ router.get("/appointments/ids", async (req, res) => {
 
 router.get("/appointments/:userID", async (req, res) => {
     try {
-        const userAppointments = await appointmentModel.find({ "clientInfo": new Types.ObjectId(req.params.userID)});
+        const userAppointments = await appointmentModel.find({ "clientInfo": new Types.ObjectId(req.params.userID)}).sort("serviceDate");
         res.json(userAppointments);
     } catch (err) {
         console.log(err);

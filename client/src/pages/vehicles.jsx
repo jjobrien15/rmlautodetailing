@@ -1,5 +1,4 @@
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import "../stylesheets/vehicles.scss"
 
 const vehiclesForSale = [
@@ -25,25 +24,8 @@ const vehiclesForSale = [
 const Vehicles = () => {
   return (
     <div>
-        <Navbar />
-        <div className="banner">
-          <div className="vehiclesContent">
-          <h1>Vehicles For Sale</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Accusamus unde libero iusto fugit! Quidem, nam ipsam magnam,
-            labore eum modi aperiam repellat nisi sunt sit molestias
-            necessitatibus soluta numquam libero!</p>
-          </div>
-      </div>
-      <div className="vehicles container">
-        {vehiclesForSale.map((vehicle, key) => (
-          <div className="vehicle">
-            
-            <p>{ vehicle.year + " " + vehicle.make + " " + vehicle.model }</p>
-          </div>
-        ))}
-      </div>
-      <Footer />
+      <Navbar />
+        <p>You have no Vehicles to display at this time....</p>
     </div>
   )
 }
