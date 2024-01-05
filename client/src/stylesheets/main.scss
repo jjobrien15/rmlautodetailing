@@ -71,82 +71,6 @@ a{
   border-radius: 100px;
 }
 
-
-
-nav{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10%;
-    align-items: center;
-    font-weight: 400;
-    background-color: transparent;
-    transition: ease 0.3s all;  
-    height: var.$responsive-nav-height;
-    .logo img{
-        height: 40px;
-    }
-
-    .menuBtn{
-        display: none;
-    }
-
-    ul{
-        display: flex;
-        align-items: center;
-        height: 100%;
-        gap: 2rem;
-        list-style-type: none;
-        li {
-            height: 100%;
-            a, .navProfileBtn{
-                display: flex;
-                align-items: center;
-                position: relative;
-                color: var.$white;
-                height: 100%;
-                transition: all 0.3s ease;
-                font-size: 1rem; 
-                cursor: pointer;
-                &:hover{
-                    color: var.$gold;
-                }
-            }
-            
-        }
-        
-        .navProfileBtn{
-            border: none; 
-            background-color: transparent;
-            cursor: pointer;
-        }
-        .navProfileMenu{
-            display: none;
-            border-radius: 0 0 1rem 1rem;
-            a{ 
-                padding: 1rem 2rem; 
-               
-                &:hover{
-                    color: var.$gold;
-                }
-            }
-        }
-        .navProfileBtnLink:hover .navProfileMenu{
-            position: absolute;
-            right: 1rem;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            flex-wrap: nowrap;
-            box-shadow: 0 2px 5px var.$darkGray;
-            background-color: var.$darkGray;
-        }
-    }
-}//End Nav
-
 .scrollingSocials{
     background-color: var.$black;
     border-radius:0  10px 10px 0;
@@ -235,34 +159,6 @@ nav{
 @media screen and (max-width: var.$responsive-width) {
     .container{
         padding: 10%;
-    }
-    nav{
-        .collapsed{
-            position: fixed;
-            top: var.$responsive-nav-height;
-            left: 0;
-            width: 100%;
-            background-color: var.$darkGray;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-            padding: 2rem;
-        }
-        .scrollingResponsiveNav{
-            background-color: var.$black;
-        }
-        .navLinks{
-            display: none;
-            transition: all 0.3s ease;
-        }
-        .menuBtn{
-            display: block;
-            background-color: transparent;
-            border: none;
-            padding: 1rem;
-            color: var.$white;
-            font-size: 1.5rem;
-        }
     }
     .footer{
         .footerContent{

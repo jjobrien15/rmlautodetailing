@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faMultiply } from '@fortawesome/free-solid-svg-icons';
 import { useGetUserID } from "../hooks/useGetUserID";
 import axios from "axios";
+import "../stylesheets/navbar.scss"
 
 const Navbar = () => {
   //State to check if scrolled away from top of page to add styling to navbar if moved
@@ -93,7 +94,6 @@ const ProfileMenu = [
   
   const handleProfileDropdown = () => {
     setProfileDropdown(!profileDropdown);
-    console.log(profileDropdown);
   }
 
    //Logout function clears access token from cookies 
@@ -106,38 +106,11 @@ const ProfileMenu = [
   }
 
   return (
-    <nav className={`${scrolling || navCollapsed || profileDropdown ? "scrolling" : ""}`}>
+    <nav className={`${scrolling || navCollapsed ? "scrolling" : ""}`}>
   
       <div className="logo"><a href="/"><img src={RMLLogo} alt="RML Auto Detailing" /></a></div>
 
-      <ul className="navLinks">
-        {NavLinks.map((link) => (
-          <li key={link.name}><a href={link.href}>{link.name}</a></li>
-        ))}
-      </ul>
-
-      <ul className="profileLinks">
-      {!cookies.access_token ?
-            RightNavLinks.map((link) => (
-              <li key={link.name}><a href={link.href}>{link.name}</a></li>
-            ))
-            :
-          <li className="navProfileBtnLink">
-            <a href="/Profile/MyAppointments" className="navProfileBtn">My Profile</a>
-              <div className="navProfileMenu">
-                {ProfileMenu.map((link, key) => (
-                  <a className="navProfileMenuLink" key={key} href={link.href}>{link.name}</a>
-                ))}
-                <a className="navProfileMenuLink" onClick={logout}>Logout</a>
-              </div>
-            </li>
-        }
-      </ul>
-
-
-
-
-      {/*<ul className={`${navCollapsed ? "collapsed" : "navLinks"}`}>
+      <ul className={`${navCollapsed ? "collapsed" : "navLinks"}`}>
           {NavLinks.map((link) => (
               <li key={link.name}><a href={link.href}>{link.name}</a></li>
           ))}
@@ -147,7 +120,7 @@ const ProfileMenu = [
             ))
             :
           <li className="navProfileBtnLink">
-              <button className="navProfileBtn">Profile</button>
+              <button className="navProfileBtn">My Profile </button>
               <div className="navProfileMenu">
                 {ProfileMenu.map((link, key) => (
                   <a className="navProfileMenuLink" key={key} href={link.href}>{link.name}</a>
@@ -156,7 +129,7 @@ const ProfileMenu = [
               </div>
             </li>
         }
-      </ul>*/}
+      </ul>
       
       <button className="menuBtn" id="menuBtn"type="button" onClick={handleNavbarCollapse}>
           <FontAwesomeIcon icon={navCollapsed ? faMultiply : faBars} />

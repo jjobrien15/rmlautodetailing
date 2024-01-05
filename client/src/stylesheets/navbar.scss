@@ -1,0 +1,128 @@
+@use "globalVariables.scss" as var;
+
+
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    font-weight: 400;
+    background-color: transparent; 
+    height: var.$responsive-nav-height;
+    .logo img{
+        height: 40px;
+    }
+
+    .menuBtn{
+        display: none;
+    }
+
+    ul{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        
+        li {
+            height: 100%;
+            width: 100%;
+
+            a, .navProfileBtn{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                color: var.$white;
+                height: 100%;
+                transition: all 0.3s ease;
+                font-size: 1rem;
+                padding:1rem;
+                cursor: pointer;
+                &:hover{
+                    color: var.$darkGray;
+                    background-color: var.$gold;
+                }
+            }
+            
+        }
+        
+        .navProfileBtn{
+            border: none; 
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .navProfileMenu{
+            display: none;                                  
+            border-radius: 0 0 0.25rem 0.25rem;
+            .navProfileMenuLink{ 
+                padding: 1rem 2rem; 
+                color: var.$white;
+                &:hover{
+                    color: var.$darkGray;
+                    background-color: var.$gold;
+                }
+            }
+        }
+        .navProfileBtnLink{
+            &:hover .navProfileMenu{
+                position: fixed;
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                flex-wrap: nowrap;            
+                background-color: var.$darkGray;
+            }
+        }
+    }
+}//End Nav
+
+@media screen and (max-width: var.$responsive-width) {
+    nav{
+        .navLinks{
+            display: none;
+        }
+        .collapsed{
+            position: absolute;
+            top: var.$responsive-nav-height;
+            left: 0;
+            width: 100%;
+            height: auto;
+            background-color: var.$darkGray;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        .navProfileBtn{
+            width: 100%;
+            text-align: center;
+            &:hover .navProfileMenu{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: 0 2px 5px var.$darkGray;
+                background-color: var.$gray;
+            }
+        }       
+        .scrollingResponsiveNav{
+            background-color: var.$black;
+        }
+        .menuBtn{
+            display: block;
+            background-color: transparent;
+            border: none;
+            padding: 1rem;
+            color: var.$white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            &:hover{
+                color: var.$gold;
+            }
+        }
+    }
+}
