@@ -121,12 +121,12 @@ const ProfileMenu = [
             :
           <li className="navProfileBtnLink">
               <button className="navProfileBtn">My Profile </button>
-              <div className="navProfileMenu">
-                {ProfileMenu.map((link, key) => (
-                  <a className="navProfileMenuLink" key={key} href={link.href}>{link.name}</a>
-                ))}
-                <a className="navProfileMenuLink" onClick={logout}>Logout</a>
-              </div>
+                <div className="navProfileMenu">
+                    {ProfileMenu.map((link, key) => (
+                      <a className="navProfileMenuLink" key={key} href={link.href}>{link.name}</a>
+                    ))}
+                    <a className="navProfileMenuLink" onClick={logout}>Logout</a>
+                </div>
             </li>
         }
       </ul>
