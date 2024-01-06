@@ -30,10 +30,6 @@ const Navbar = () => {
     { name: "About", href: "/About" },
     /*{ name: "Schedule", href: "/Schedule" },*/
 ]
-
-const RightNavLinks = [
-  { name: "Login", href: "/Login" },
-]
   
 const ProfileMenu = [
   { name: "My Appointments", href: "/Profile/MyAppointments" },
@@ -110,17 +106,20 @@ const ProfileMenu = [
   
       <div className="logo"><a href="/"><img src={RMLLogo} alt="RML Auto Detailing" /></a></div>
 
-      <ul className={`${navCollapsed ? "collapsed" : "navLinks"}`}>
+      <ul className={`${navCollapsed ? "collapsed" : "navLinks"} navLinksUl`}>
+        <div className="leftNavLinks">
           {NavLinks.map((link) => (
               <li key={link.name}><a href={link.href}>{link.name}</a></li>
           ))}
+        </div>
+        <div className="rightNavLinks">
         {!cookies.access_token ?
-            RightNavLinks.map((link) => (
-              <li key={link.name}><a href={link.href}>{link.name}</a></li>
-            ))
+            <li>
+              <a href="/Login">Login</a>
+            </li>
             :
           <li className="navProfileBtnLink">
-              <button className="navProfileBtn">My Profile </button>
+              <a className="navProfileBtn" href="/Profile/MyAppointments">My Profile</a>
                 <div className="navProfileMenu">
                     {ProfileMenu.map((link, key) => (
                       <a className="navProfileMenuLink" key={key} href={link.href}>{link.name}</a>
@@ -128,7 +127,7 @@ const ProfileMenu = [
                     <a className="navProfileMenuLink" onClick={logout}>Logout</a>
                 </div>
             </li>
-        }
+        }</div>
       </ul>
       
       <button className="menuBtn" id="menuBtn"type="button" onClick={handleNavbarCollapse}>

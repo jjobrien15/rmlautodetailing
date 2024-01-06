@@ -24,10 +24,14 @@ nav{
 
     ul{
         height: 100%;
+        width: 100%;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         list-style-type: none;
-        
+        .leftNavLinks, .rightNavLinks{
+            display: flex;
+        }
         li {
             height: 100%;
             width: 100%;
@@ -50,29 +54,14 @@ nav{
             }
             
         }
-        
-        .navProfileBtn{
-            border: none; 
-            background-color: transparent;
-            cursor: pointer;
-        }
 
-        .navProfileMenu{
-            display: none;                                  
-            border-radius: 0 0 0.25rem 0.25rem;
-            .navProfileMenuLink{ 
-                padding: 1rem 2rem; 
-                color: var.$white;
-                &:hover{
-                    color: var.$darkGray;
-                    background-color: var.$gold;
-                }
-            }
-        }
         .navProfileBtnLink{
             min-width: 15rem;
 
             .navProfileBtn{
+                border: none; 
+                background-color: transparent;
+                cursor: pointer;
                 min-width: inherit;
             }
             &:hover .navProfileMenu{
@@ -84,7 +73,20 @@ nav{
                 flex-wrap: nowrap;            
                 background-color: var.$darkGray;
             }
+            .navProfileMenu{
+                display: none;                                  
+                border-radius: 0 0 0.25rem 0.25rem;
+                .navProfileMenuLink{ 
+                    padding: 1rem 2rem; 
+                    color: var.$white;
+                    &:hover{
+                        color: var.$darkGray;
+                        background-color: var.$gold;
+                    }
+                }
+            }
         }
+
     }
 }//End Nav
 
@@ -103,13 +105,18 @@ nav{
             display: flex;
             flex-direction: column;
             transition: all 0.3s ease;
+            .leftNavLinks, .rightNavLinks{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
         }
         .navProfileBtnLink{
-           
+            .navProfileBtn{
+                width: 100%;
+            }
             &:hover .navProfileMenu{
-                
-                display: none;
-               
+                display: none !important;
             }
         }
         .scrollingResponsiveNav{
