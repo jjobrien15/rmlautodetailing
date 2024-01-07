@@ -1,5 +1,4 @@
 import Navbar from "../components/Navbar"
-import testImg from "../assets/galleryImages/img1.jpg"
 import "../stylesheets/profile.scss";
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -7,6 +6,9 @@ import { useCookies } from "react-cookie"
 import { useGetUserID } from "../hooks/useGetUserID"
 import { Outlet, Link } from "react-router-dom"
 import axios from "axios"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendar } from '@fortawesome/free-regular-svg-icons'
+import { faUser, faCar } from "@fortawesome/free-solid-svg-icons";
 
 const profile = () => {
 
@@ -20,9 +22,9 @@ const profile = () => {
     const navigate = useNavigate();
 
     const profileLinks = [
-        { name: "My Appointments", to: "MyAppointments" },
-        { name: "My Vehicles", to: "MyVehicles" },
-        { name: "My Profile", to: "MyProfile" },
+        { name: "My Appointments", to: "MyAppointments", icon: <FontAwesomeIcon icon={faCalendar}/> },
+        { name: "My Vehicles", to: "MyVehicles", icon: <FontAwesomeIcon icon={faCar}/> },
+        { name: "My Profile", to: "MyProfile", icon: <FontAwesomeIcon icon={faUser}/>},
     ]
 
     //Use Effect will load current user info
@@ -54,12 +56,18 @@ const profile = () => {
         <Navbar />
         <div className="profileInformation">
             <div className="profileNav">
-                <div className="profileUser">
-                    <h3>{userInfo.fname} {userInfo.lname}</h3>
-                </div>
                 <ul className="profileNavLinks">
+                <div className="profileNavUser">
+                    <div className="profileNavUserImg">IMG</div>
+                    <h3 className="profileNavUserName">{userInfo.fname} {userInfo.lname}</h3>
+                </div>
                 {profileLinks.map((link, key) => (
-                    <li key={key}><Link className="profileNavLink" to={link.to}>{link.name}</Link></li>
+                    <li key={key}>
+                        <Link className="profileNavLink" to={link.to}>
+                            <div className="profileNavLinkIcon">{link.icon}</div> 
+                            <div className="profileNavLinkName">{link.name}</div>
+                        </Link>
+                    </li>
                 ))}
                 </ul>
             </div>
