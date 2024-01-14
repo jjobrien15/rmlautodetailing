@@ -1,6 +1,5 @@
 import "../stylesheets/vehicles.scss"
 
-import { useOutletContext } from "react-router-dom"
 
 const Vehicles = () => {
   return (
