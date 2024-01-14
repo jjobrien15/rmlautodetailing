@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { CookiesProvider } from 'react-cookie'
 import Home from "./pages/home"
-import Services from "./pages/services.jsx"
-import About from "./pages/about.jsx"
-import Gallery from "./pages/gallery.jsx"
-import Vehicles from "./pages/vehicles.jsx"
-import Login from "./pages/login.jsx"
-import Schedule from './pages/schedule.jsx'
-import Register from "./pages/register.jsx"
-import Profile from "./pages/profile.jsx"
-import Appointments from "./pages/appointments.jsx"
-import EditProfile from "./pages/edit-profile.jsx"
-import ErrorPage from "./pages/error-page.jsx"
+import Services from "./pages/services"
+import About from "./pages/about"
+import Gallery from "./pages/gallery"
+import Vehicles from "./pages/vehicles"
+import Login from "./pages/login"
+import Schedule from './pages/schedule'
+import Register from "./pages/register"
+import Profile from "./pages/profile"
+import Appointments from "./pages/appointments"
+import EditProfile from "./pages/edit-profile"
+import ErrorPage from "./pages/error-page"
 import "./stylesheets/main.scss"
 
 
