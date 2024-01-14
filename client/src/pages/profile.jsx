@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar"
 import "../stylesheets/profile.scss";
 import { useEffect, useState } from "react"
 import { useCookies } from "react-cookie"
-import { useGetUserId } from "../hooks/useGetUserId.jsx"
+import { useGetUserId } from "/hooks/useGetUserId.jsx"
 import { Outlet, Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
