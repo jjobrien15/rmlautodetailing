@@ -50,11 +50,12 @@ const Login = () => {
   //Attempting to validate user and login
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log();
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/login`, { ...formValues });
       if(!response.data.message){
         setCookies("access_token", response.data.token);
-        window.localStorage.setItem("userID", response.data.userID);
+        window.localStorage.setItem("userId", response.data.userId);
         navigate("/Profile/MyAppointments");
       }else{
         setErrorMessage(response.data.message);

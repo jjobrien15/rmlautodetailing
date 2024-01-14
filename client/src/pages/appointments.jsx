@@ -1,9 +1,10 @@
 import Schedule from "../pages/schedule";
-import { useGetUserID } from "../hooks/useGetUserID";
+import AppointmentCard from "../components/AppointmentCard";
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useGetUserId } from "../hooks/useGetUserId";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBan, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 import Popup from "reactjs-popup"
 import "../stylesheets/appointments.scss"
@@ -14,13 +15,13 @@ const appointments = () => {
     //useNavigate hook to redirect on logout
     const navigate = useNavigate();
 
-    //Custome hook to get user id from local storage
-    const userID = useGetUserID();
+    //Custom hook for to get User ID
+    const userId = useGetUserId();
 
     async function handleCancelAppointment(apptID) {
         try{
             const response = await axios.delete(
-                `${import.meta.env.VITE_BASE_URI}/appointments/deleteAppointment/${apptID}`
+                `${import.meta.env.VITE_BASE_URI}/profile/deleteAppointment/${apptID}`
             );
             alert("Appointment Successfully Deleted!")
             window.location.reload();
@@ -32,10 +33,10 @@ const appointments = () => {
     //Use Effect will load current user appointments
     useEffect(() => {
         const fetchAppointments = async () => {
-            if (userID) {
+            if (userId) {
                 try {
                     const response = await axios.get(
-                        `${import.meta.env.VITE_BASE_URI}/appointments/appointments/${userID}`
+                        `${import.meta.env.VITE_BASE_URI}/profile/appointments/${userId}`
                     );
                     setUserAppointments(response.data)
                 } catch (err) {
@@ -46,22 +47,32 @@ const appointments = () => {
             }
         }
         fetchAppointments();
-    }, [userID])
+        
+    }, [userId])
 
 
     return (
     <div> 
         <div className="appointmentsHeader">
             <h1>Appointments</h1>
-                {/*<Link className="profileNavLinks" to={"../Schedule"}>Book Appointment <FontAwesomeIcon icon={faPlus} /></Link>*/}
-            <Popup className="popupSchedule" trigger={<button className="bookAppointmentBtn">Book Appointment <FontAwesomeIcon icon={faPlus} /></button> }modal nested>
-                <Schedule />
-            </Popup>
-            </div>
-        <table className="appointmentsTable">
+                <Popup className="popupSchedule" trigger={<button className="bookAppointmentBtn">Book Appointment <FontAwesomeIcon icon={faPlus} /></button> }modal nested>
+                    <Schedule />
+                </Popup>
+        </div>
+
+        <div className="appointmentCards">
+                {userAppointments.length == 0 ? <p>You have no scheduled appointments...</p> :
+                    userAppointments.map((apptInfo, key) => (
+                        <AppointmentCard apptInfo={apptInfo} key={key} />
+                    ))
+                }
+        </div>
+
+
+            {/*<table className="appointmentsTable">
             <thead>
                 <tr>
-                    <th className="appointmentDateRow">Date</th>
+                        <th className="appointmentDateRow">Date</th>
                     <th className="appointmentServiceRow">Service</th>
                     <th className="appointmentOptionsRow">Options</th>
                 </tr>
@@ -80,7 +91,7 @@ const appointments = () => {
                 </tr>
             ))}
             </tbody>
-        </table>
+            </table>*/}
     </div>
     )
 }

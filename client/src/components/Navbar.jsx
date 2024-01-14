@@ -1,12 +1,11 @@
 //Navbar css in located in main.scss
 import { useState, useEffect } from "react";
+import { useGetUserId } from "../hooks/useGetUserId";
 import RMLLogo from "../assets/RMLLogo.png";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faMultiply } from '@fortawesome/free-solid-svg-icons';
-import { useGetUserID } from "../hooks/useGetUserID";
-import axios from "axios";
 import "../stylesheets/navbar.scss"
 
 const Navbar = () => {
@@ -19,9 +18,9 @@ const Navbar = () => {
   //Use cookies to check if a user is logged in
   const [cookies, setCookies, removeCookies] = useCookies(["access_token"]);
   //GetUserID
-  const userID = useGetUserID();
-  //Logged in user info
-  const [userInfo, setUserInfo] = useState({});
+  const userId = useGetUserId();
+
+
 
   const NavLinks = [
     { name: "Home", href: "/" },
@@ -34,7 +33,7 @@ const Navbar = () => {
 const ProfileMenu = [
   { name: "My Appointments", href: "/Profile/MyAppointments" },
   { name: "My Vehicles", href: "/Profile/MyVehicles" },
-  {name: "My Profile", href: "/Profile/MyProfile"},
+  { name: "My Profile", href: "/Profile/MyProfile"},
 ]
 
   //useNavigate hook to login page on logout
@@ -97,7 +96,7 @@ const ProfileMenu = [
     const logout = () => {
       setCookies("access_token", "", {path: "/"})
       removeCookies("access_token")
-      window.localStorage.removeItem("userID")
+      window.localStorage.removeItem("userId")
       navigate("/login")
   }
 

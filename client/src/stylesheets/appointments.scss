@@ -18,42 +18,32 @@
         }
     }
 }
-.appointmentsTable{
-    font-family: var.$font-family;
-    width: 100%;
-    text-align: left;
-    border-collapse: collapse;
-    .appointmentsDateRow{
-        width: 25%;
-    }
-    .appointmentsServiceRow{
-        width: 50%;
-    }
-    .appointmentOptionsRow{
-        width: 25%;
-    }
-    .cancelBtn{
-        background-color: transparent;
-        border-radius: var.$form-border-radius;
-        border: none;
-        padding: 0.5rem;
-        color: red;
-        cursor: pointer;
-        &:hover{
-            background-color: red;
-            color: var.$white;
+.appointmentCards{
+   .appointmentCard{
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        .appointmentCardInfo3{
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            button{
+                border: none;
+                border-radius: 0.5rem;
+                padding: 0.25rem 0.5rem;
+                box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+                cursor: pointer;
+                transition: all 0.3s ease;
+                &:hover{
+                    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.7);
+                }
+            }
         }
     }
-    tr{
-        border-bottom: 1px solid var.$darkGray;
-    }
-    td{
-        padding: 1rem 0;
-    }
-    
-    .userAppointment td:last-child, .appointmentOptionsRow {
-       text-align:center;
-    }
-
 }
 

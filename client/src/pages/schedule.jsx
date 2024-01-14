@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useGetUserID } from "../hooks/useGetUserID"
+import { useGetUserId } from "../hooks/useGetUserId"
 import "../stylesheets/formPageStyles.scss"
 import axios from "axios"
 
@@ -8,11 +8,11 @@ const schedule = () => {
     const [dateSelected, setDateSelected] = useState(false);
 
     //Custome hook to get user id from local storage
-    const userID = useGetUserID();
+    const userId = useGetUserId();
 
     //state for details of appointment. Changes using handleChange function
     const [appointment, setAppointment] = useState({
-        clientInfo: userID,
+        clientId: userId,
         service: "",
         phone: "",
         serviceDate: "",
@@ -27,7 +27,7 @@ const schedule = () => {
     //Hanldes submitting form and creating/saving information in DB
     const handleSubmit = async (e) => {
         try {
-            await axios.post(`${import.meta.env.VITE_BASE_URI}/appointments/createAppointment`, { ...appointment })
+            await axios.post(`${import.meta.env.VITE_BASE_URI}/profile/createAppointment`, { ...appointment })
             //useNavigate("/Profile/Appointments");
         } catch (err) {
             console.log(err);

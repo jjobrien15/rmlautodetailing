@@ -15,8 +15,16 @@
             input{
                 border-radius: var.$form-border-radius;
                 border: 1px solid var.$darkGray;
-                background-color: var.$darkGray;
+                background-color: var.$gray;
                 padding: 0.5rem;
+            }
+            .submitBtn{
+                border: none;
+                border-radius: var.$form-border-radius;
+                width: 50%;
+                padding: 0.5rem;
+                background-color: var.$gold;
+                cursor: pointer;
             } 
         }
         .formErrMessage{

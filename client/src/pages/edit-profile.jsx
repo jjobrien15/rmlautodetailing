@@ -1,24 +1,27 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useGetUserID } from "../hooks/useGetUserID"
-import axios from "axios"
-import { useCookies } from "react-cookie"
-import FormInput from "../components/FormInput"
 import "../stylesheets/editProfile.scss"
+import axios from "axios"
+
+import { useState, useEffect } from "react"
+import { useCookies } from "react-cookie"
+import { useGetUserId } from "../hooks/useGetUserId"
+
+import FormInput from "../components/FormInput"
+
+
+
+
 
 
 const userProfile = () => {
     const [cookies, setCookie, removeCookie] = useCookies(["access_token"])
-    const [userInfo, setUserInfo] = useState({})
+    const [userInfo, setUserInfo] = useState({});
+    const userId = useGetUserId();
+
     const [formValues, setFormValues] = useState({
         fname: "",
         lname: "",
         email: "",
     })
-    
-    const userID = useGetUserID();
-
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
@@ -27,15 +30,36 @@ const userProfile = () => {
      //Handle request to update user
     const onSubmit = async (e) => {
         e.preventDefault();
-
         try {
             await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/register`, { ...formValues });
-            navigate("/login");
         } catch (err){
             console.log(err);
         }
-
     }
+
+      //Use Effect will load current user info
+      useEffect(() => {
+        const fetchUser = async () => {
+            if (userId) {
+                try {
+                    const response = await axios.get(
+                        `${import.meta.env.VITE_BASE_URI}/auth/profile/${userId}`,
+                        {
+                            headers: {
+                                auth: cookies.access_token
+                            }
+                        }
+                    );
+                    setUserInfo(response.data);
+                } catch (err) {
+                    console.log(err);
+                }
+            } else {
+                navigate("/login");
+            }
+        }
+        fetchUser();
+    }, [userId])
 
 
     const inputs = [
@@ -44,6 +68,7 @@ const userProfile = () => {
             type: "text",
             placeholder: userInfo.fname,
             label: "First Name:",
+            htmlFor: "fname",
             required: true,
             errormessage: "Please enter your first name..."
         },
@@ -52,6 +77,7 @@ const userProfile = () => {
             type: "text",
             placeholder: userInfo.lname,
             label: "Last Name:",
+            htmlFor: "lname",
             required: true,
             errormessage: "Please enter your last name..."
         },
@@ -60,6 +86,7 @@ const userProfile = () => {
             type: "email",
             placeholder: userInfo.email,
             label: "Email:",
+            htmlFor: "email",
             pattern: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
             required: true,
             errormessage: "Please enter valid email address...",

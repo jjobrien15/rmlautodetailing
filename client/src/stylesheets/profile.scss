@@ -8,64 +8,79 @@
     color: var.$white;
     background-color: var.$gray;
         .profileInformation{
-            display: grid;
-            grid-template-columns: auto 5fr;
             min-height: 100vh;
             color: var.$darkGray;
             background-color: var.$gray;
             .profileNav{
-                background-color: var.$darkGray;
+                position: fixed;
+                top: var.$responsive-nav-height;
+                left: 0;
+                height: calc(100vh - var.$responsive-nav-height);
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 align-items: center;
-                gap: 2rem; 
-                padding-top: 2rem;
+                background-color: var.$darkGray;
                 box-shadow: 1px 0px 10px var.$darkGray;
-                .profileUser{
+                .profileNavLinks{
+                    list-style: none;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
                     gap: 1rem;
-                    h3{
+                    background-color: var.$darkGray;
+                    padding: 0.5rem;
+                    .profileNavUser{
+                        cursor: pointer;
+                        .profileNavUserImg{
+                            border: 2px solid var.$gold;
+                            border-radius: 50%;
+                            height: 3rem;
+                            width: 3rem;
+                            color: var.$white;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        .profileNavUserName{
+                            display: none;
+                        }
+                    }
+                    .profileNavLink{
                         color: var.$white;
+                        transition: ease 0.3s all;
+                        display: flex;
+                        padding: 0.25rem 0.5rem;
+                        &:hover{
+                            color: var.$gold;
+                            transition: ease 0.3s all;
+                        }
+                        .profileNavLinkIcon{
+                            font-size:1.25rem;
+                            padding: 0 0.5rem;
+                        }
+                        .profileNavLinkName{
+                            display: none;
+                        }
+                    }
+                }
+                .profileNavLogout button{
+                    border:none;
+                    background-color: transparent;
+                    color: var.$white;
+                    font-size: 1rem;
+                    padding: 0.5rem;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    &:hover{
+                        color: var.$gold;
                     }
                 }
             }   
-            .profileNavLinks{
-                list-style: none;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-                background-color: var.$darkGray;
-                padding: 0.5rem;
-                .profileNavUser{
-                    .profileNavUserImg{
-                        color: var.$white;
-                    }
-                    .profileNavUserName{
-                        display: none;
-                    }
-                }
-                .profileNavLink{
-                    color: var.$white;
-                    transition: ease 0.3s all;
-                    display: flex;
-                    align-items: flex-end;
-                    padding: 2px;
-                    &:hover{
-                        color: var.$gold;
-                        transition: ease 0.3s all;
-                    }
-                    .profileNavLinkIcon{
-                        font-size:1.25rem;
-                        padding: 0 0.5rem;
-                    }
-                    .profileNavLinkName{
-                        display: none;
-                    }
-                }
-            }
+           
             .profileOutlet{
+                margin-top: var.$responsive-nav-height;
+                margin-left: 4rem;
                 padding: 1rem 2rem;
             }
         }
