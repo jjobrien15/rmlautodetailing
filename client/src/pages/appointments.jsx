@@ -2,7 +2,7 @@ import Schedule from "../pages/schedule";
 import AppointmentCard from "../components/AppointmentCard";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetUserId } from "../hooks/useGetUserId";
+import { useGetUserId } from "../hooks/useGetUserId.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
