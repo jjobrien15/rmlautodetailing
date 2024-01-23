@@ -1,7 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { CookiesProvider } from 'react-cookie'
+import { Toaster } from 'react-hot-toast'
+
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import Home from "./pages/home"
 import Services from "./pages/services"
 import About from "./pages/about"
@@ -73,6 +75,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CookiesProvider>
       <RouterProvider router={router} />
+      <Toaster position="bottom-right"/>
     </CookiesProvider>
   </React.StrictMode>,
 )

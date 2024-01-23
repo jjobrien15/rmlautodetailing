@@ -1,11 +1,13 @@
 //Navbar css in located in main.scss
 import { useState, useEffect } from "react";
 import { useGetUserId } from "../hooks/useGetUserId";
-import RMLLogo from "../assets/RMLLogo.png";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faMultiply } from '@fortawesome/free-solid-svg-icons';
+
+import RMLLogo from "../assets/RMLLogo.png";
+
 import "../stylesheets/navbar.scss"
 
 const Navbar = () => {

@@ -75,13 +75,32 @@ router.post("/createVehicle", async (req, res) => {
 /******************************************** PUTS *******************************************/
 
 //Not used update path
-router.put("/createAppointment", async (req, res) => {
+/*router.put("/createAppointment", async (req, res) => {
     try {
         const appointment = await appointmentModel.findById(req.body.appointmentID);
         const user = await UserModel.findById(req.body.userID);
         user.appointments.push(appointment);
         await user.save();
         res.json({appointments: user.appointments});
+    } catch (err) {
+        console.log(err);
+    }
+});*/
+
+//Updates user profile.
+router.put("/updateUser", async (req, res) => {
+    try {
+        const { userId, email, fname, lname } = req.body;
+        const user = await UserModel.findOne({ _id:userId });
+        const emailExists = await UserModel.findOne({ email });
+
+        if (emailExists && user.email !== email) {
+            return res.json({error: true, message: "Email is already in use."})
+        } else {
+            await UserModel.updateOne({ _id: userId }, {email, fname, lname});
+        }
+
+        res.json({error: false, message: "User updated successfully!"});
     } catch (err) {
         console.log(err);
     }

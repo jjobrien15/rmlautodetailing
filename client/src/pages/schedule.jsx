@@ -28,7 +28,7 @@ const schedule = () => {
     const handleSubmit = async (e) => {
         try {
             await axios.post(`${import.meta.env.VITE_BASE_URI}/profile/createAppointment`, { ...appointment })
-            //useNavigate("/Profile/Appointments");
+            useNavigate("/Profile/Appointments");
         } catch (err) {
             console.log(err);
         }

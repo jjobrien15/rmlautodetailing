@@ -7,7 +7,19 @@ import verifyToken from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
+/********************************************* GETS ***********************************************/
+//Get user info for profile
+router.get("/profile/:id", verifyToken, async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.params.id);
+        res.json(user);
+    } catch (err) {
+        console.log(err);
+   }
+});
 
+
+/********************************************* POSTS ***********************************************/
 //Register a new user and hash password
 router.post("/register", async (req, res) => {
     const { fname, lname, email, pwd } = req.body;
@@ -47,14 +59,10 @@ router.post("/login", async (req, res) => {
 
 });
 
-//Get user info for profile
-router.get("/profile/:id", verifyToken, async (req, res) => {
-    try {
-        const user = await UserModel.findById(req.params.id);
-        res.json(user);
-    } catch (err) {
-        console.log(err);
-   }
-});
+/********************************************* PUTS ***********************************************/
+
+
+
+/********************************************* DELETES ***********************************************/
 
 export { router as userRouter };

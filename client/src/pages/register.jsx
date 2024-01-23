@@ -1,9 +1,12 @@
-import Navbar from "../components/Navbar"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+
+import Navbar from "../components/Navbar"
 import FormInput from "../components/FormInput"
-import "../stylesheets/formPageStyles.scss"
 import axios from "axios"
+
+import "../stylesheets/formPageStyles.scss"
+
 
 const register = () => {
 
@@ -72,12 +75,11 @@ const register = () => {
     e.preventDefault();
 
     try {
-      await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/register`, { ...formValues });
-      alert("Registration successful! Please login.");
-    } catch (err){
-      console.log(err);
-    }finally{
-      navigate("/login");
+        await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/register`, { ...formValues });
+      } catch (err){
+        console.log(err);
+      }finally{
+        navigate("/login");
     }
 
   }
