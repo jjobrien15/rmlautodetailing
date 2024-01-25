@@ -15,7 +15,7 @@
                 position: fixed;
                 top: var.$responsive-nav-height;
                 left: 0;
-                height: calc(100dvh - var.$responsive-nav-height);
+                height: calc(100svh - var.$responsive-nav-height);
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
