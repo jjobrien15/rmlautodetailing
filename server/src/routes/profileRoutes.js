@@ -39,9 +39,9 @@ router.get("/appointments/:userId", async (req, res) => {
 });
 
 //Get all users vehicles
-router.get("/vehicles/:userID", async (req, res) => {
+router.get("/vehicles/:userId", async (req, res) => {
     try {
-        const userVehicles = await vehicleModel.find({})
+        const userVehicles = await vehicleModel.find({ clientId: req.params.userId })
         res.json(userVehicles);
     } catch (err) {
         console.log(err);
@@ -64,6 +64,7 @@ router.post("/createAppointment", async (req, res) => {
 //Creates a new Vehicle
 router.post("/createVehicle", async (req, res) => {
     const vehicle = await vehicleModel(req.body);
+    
     try {
         const response = await vehicle.save();
         res.json(response);
@@ -94,8 +95,9 @@ router.put("/updateUser", async (req, res) => {
         const user = await UserModel.findOne({ _id:userId });
         const emailExists = await UserModel.findOne({ email });
 
+        //Checking if email is in use and not used by current user.
         if (emailExists && user.email !== email) {
-            return res.json({error: true, message: "Email is already in use."})
+            return res.json({ error: true, message: "Email is already in use." });
         } else {
             await UserModel.updateOne({ _id: userId }, {email, fname, lname});
         }
@@ -112,6 +114,15 @@ router.delete("/deleteAppointment/:apptID", async (req, res) => {
     try {
         const userAppointment = await appointmentModel.deleteOne({ "_id": req.params.apptID});
         res.json(userAppointment);
+    } catch (err) {
+        console.log(err);
+   }
+})
+
+router.delete("/deleteVehicle/:vehicleId", async (req, res) => {   
+    try {
+        await vehicleModel.deleteOne({ "_id": req.params.vehicleId });
+        res.json({error:false, message: "Vehicle Successfully Deleted!"});
     } catch (err) {
         console.log(err);
    }

@@ -1,12 +1,15 @@
 import Schedule from "../pages/schedule";
 import AppointmentCard from "../components/AppointmentCard";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetUserId } from "../hooks/useGetUserId";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
 import axios from "axios";
 import Popup from "reactjs-popup"
+
 import "../stylesheets/appointments.scss"
 
 const appointments = () => {
@@ -22,8 +25,7 @@ const appointments = () => {
         try{
             const response = await axios.delete(
                 `${import.meta.env.VITE_BASE_URI}/profile/deleteAppointment/${apptID}`
-            );
-            alert("Appointment Successfully Deleted!")
+            );s
             window.location.reload();
         } catch(err){
             console.log(err);
@@ -54,7 +56,7 @@ const appointments = () => {
     return (
     <div> 
         <div className="appointmentsHeader">
-            <h1>Appointments</h1>
+            <h1>My Appointments</h1>
                 <Popup className="popupSchedule" trigger={<button className="bookAppointmentBtn">Book Appointment <FontAwesomeIcon icon={faPlus} /></button> }modal nested>
                     <Schedule />
                 </Popup>

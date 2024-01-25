@@ -1,10 +1,12 @@
-import Navbar from "../components/Navbar"
-import FormInput from "../components/FormInput"
-import "../stylesheets/formPageStyles.scss"
 import { useState } from "react"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
+
+import Navbar from "../components/Navbar"
+import FormInput from "../components/FormInput"
 import axios from "axios"
+
+import "../stylesheets/formPageStyles.scss"
 
 const Login = () => {
 
@@ -50,7 +52,6 @@ const Login = () => {
   //Attempting to validate user and login
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log();
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URI}/auth/login`, { ...formValues });
       if(!response.data.message){
