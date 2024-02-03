@@ -1,8 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBan } from '@fortawesome/free-solid-svg-icons'
+import EditAppointment from './EditAppointment'
+import Popup from 'reactjs-popup'
 
 
-const AppointmentCard = ({apptInfo}) => {
+const AppointmentCard = ({apptInfo, handleDeleteAppointment}) => {
 
     return (
       <div className="appointmentCard">
@@ -16,10 +16,10 @@ const AppointmentCard = ({apptInfo}) => {
           <p>Jon Stamos</p>
         </div>
         <div className="appointmentCardInfo3">
-          <button className="rescheduleBtn">
-            Reschedule
-          </button>
-          <button className="cancelBtn">
+        <Popup className="popupEditVehicle" trigger={<button className="rescheduleBtn">Reschedule</button>} modal nested>
+          <EditAppointment apptInfo={apptInfo} />
+        </Popup>
+          <button className="cancelBtn" onClick={() => handleDeleteAppointment(apptInfo)}>
             Cancel
           </button>
         </div>

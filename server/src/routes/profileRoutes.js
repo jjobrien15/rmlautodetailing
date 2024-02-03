@@ -108,21 +108,31 @@ router.put("/updateUser", async (req, res) => {
     }
 });
 
-/******************************************** DELETES ******************************************************/
-//Deletes client appointment
-router.delete("/deleteAppointment/:apptID", async (req, res) => {   
+router.put("/editVehicle", async (req, res) => {
     try {
-        const userAppointment = await appointmentModel.deleteOne({ "_id": req.params.apptID});
-        res.json(userAppointment);
+        const vehicle = req.body;
+        await vehicleModel.updateOne({ _id: vehicle.vehicleId }, req.body);
+        res.json({ error: false, message: "Vehicle updated successfully!" });
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+/******************************************** DELETES ******************************************************/
+//Deletes Client Appointment
+router.delete("/deleteAppointment/:apptId", async (req, res) => {   
+    try {
+        await appointmentModel.deleteOne({ "_id": req.params.apptId});
+        res.json({ error: false, message:"Appointment Successfully Deleted!" });
     } catch (err) {
         console.log(err);
    }
 })
-
+//Delete Client Vehicle
 router.delete("/deleteVehicle/:vehicleId", async (req, res) => {   
     try {
         await vehicleModel.deleteOne({ "_id": req.params.vehicleId });
-        res.json({error:false, message: "Vehicle Successfully Deleted!"});
+        res.json({ error:false, message: "Vehicle Successfully Deleted!" });
     } catch (err) {
         console.log(err);
    }

@@ -48,12 +48,11 @@ const Vehicles = () => {
       } else {
         toast.error(response.data.message)
       }
-      
     } catch(err){
         console.log(err);
     }
-}
-
+  }
+  
   return (
     <div>
       <div className="vehiclesHeader">
@@ -65,7 +64,11 @@ const Vehicles = () => {
       <div className="vehicleCards">
           {userVehicles.length == 0 ? <p>You have no Vehicles to display at this time....</p> : 
           userVehicles.map((vehicleInfo, key) => (
-            <VehicleCard vehicleInfo={vehicleInfo} key={key} handleDeleteVehicle={handleDeleteVehicle} />
+            <VehicleCard
+              key={key}
+              vehicleInfo={vehicleInfo}
+              handleDeleteVehicle={handleDeleteVehicle}
+            />
           ))
           }
       </div>

@@ -1,6 +1,5 @@
-import axios from 'axios';
-import toast from "react-hot-toast";
-import { useNavigate } from 'react-router-dom';
+import EditVehicle from "./EditVehicle"
+import Popup from "reactjs-popup"
 
 const VehicleCard = ({ vehicleInfo, handleDeleteVehicle }) => {
 
@@ -13,10 +12,10 @@ const VehicleCard = ({ vehicleInfo, handleDeleteVehicle }) => {
       <div className="vehicleCardInfo2">
       {vehicleInfo.details}
       </div>
-      <div className="vehicleCardInfo3"> 
-        <button className="rescheduleBtn">
-          Edit
-        </button>
+      <div className="vehicleCardInfo3">
+        <Popup className="popupEditVehicle" trigger={<button className="editVehicleBtn">Edit</button>} modal nested>
+          <EditVehicle vehicleInfo={vehicleInfo} />
+        </Popup>
         <button className="cancelBtn" onClick={() => handleDeleteVehicle(vehicleInfo)}>
           Delete
         </button>

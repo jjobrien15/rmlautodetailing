@@ -39,41 +39,41 @@ const addVehicle = () => {
 
   return (
     <div>
-    <div className="formPageContent">
-            <h1>Add Vehicle</h1>
-    <form onSubmit={handleSubmit}>
-        <div className="formGroup">
-            <label htmlFor="name">Name: </label>
-            <input type="text" name="name" id="name"  onChange={handleChange}/>
-        </div>
-        <div className="formGroup">
-            <label htmlFor="make">Make:</label>
-            <input type="text" name="make" id="make"  onChange={handleChange}/>
-        </div>
-        <div className="formGroup">
-            <label htmlFor="model">Model:</label>
-            <input type="text" name="model" id="model" onChange={handleChange}/>
-        </div>
-        <div className="formGroup">
-            <label htmlFor="year">Year:</label>
-            <input type="number" name="year" id="year" onChange={handleChange}/>
-        </div>
-        <div className="formGroup">
-            <label htmlFor="color">Color:</label>
-            <input type="text" name="color" id="color" onChange={handleChange}/>
-        </div>
-        <div className="formGroup">
-            <label htmlFor="details">Details:</label>
-            <input type="text" name="details" id="details" onChange={handleChange}/>
-        </div>
+        <div className="formPageContent">
+                <h1>Add Vehicle</h1>
+        <form onSubmit={handleSubmit}>
+            <div className="formGroup">
+                <label htmlFor="name">Name: </label>
+                <input type="text" name="name" id="name"  onChange={handleChange}/>
+            </div>
+            <div className="formGroup">
+                <label htmlFor="make">Make:</label>
+                <input type="text" name="make" id="make"  onChange={handleChange}/>
+            </div>
+            <div className="formGroup">
+                <label htmlFor="model">Model:</label>
+                <input type="text" name="model" id="model" onChange={handleChange}/>
+            </div>
+            <div className="formGroup">
+                <label htmlFor="year">Year:</label>
+                <input type="number" name="year" id="year" onChange={handleChange}/>
+            </div>
+            <div className="formGroup">
+                <label htmlFor="color">Color:</label>
+                <input type="text" name="color" id="color" onChange={handleChange}/>
+            </div>
+            <div className="formGroup">
+                <label htmlFor="details">Details:</label>
+                <input type="text" name="details" id="details" onChange={handleChange}/>
+            </div>
 
-        <div className="formGroup">
-            <button className="submitBtn" type="submit">Add Vehicle</button>
+            <div className="formGroup">
+                <button className="submitBtn" type="submit">Add Vehicle</button>
+            </div>
+        </form>
+            <p>Need to review or edit an already added vehicle? <a className="formLinks" href="MyVehicles">View Vehicles</a></p>
         </div>
-    </form>
-        <p>Need to review or edit an already added vehicle? <a className="formLinks" href="MyVehicles">View Vehicles</a></p>
     </div>
-</div>
   )
 }
 

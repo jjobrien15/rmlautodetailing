@@ -9,6 +9,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import axios from "axios";
 import Popup from "reactjs-popup"
+import toast from "react-hot-toast";
 
 import "../stylesheets/appointments.scss"
 
@@ -20,17 +21,6 @@ const appointments = () => {
 
     //Custom hook for to get User ID
     const userId = useGetUserId();
-
-    async function handleCancelAppointment(apptID) {
-        try{
-            const response = await axios.delete(
-                `${import.meta.env.VITE_BASE_URI}/profile/deleteAppointment/${apptID}`
-            );s
-            window.location.reload();
-        } catch(err){
-            console.log(err);
-        }
-    }
 
     //Use Effect will load current user appointments
     useEffect(() => {
@@ -52,6 +42,22 @@ const appointments = () => {
         
     }, [userId])
 
+    //Delete appointment from appointment card.
+    const handleDeleteAppointment = async (apptInfo) => {
+        try{
+            const response = await axios.delete(`${import.meta.env.VITE_BASE_URI}/profile/deleteAppointment/${apptInfo._id}`);
+            if (!response.data.error) {
+                let remainingAppointments = userAppointments.filter((appointments) => { return appointments !== apptInfo });
+                setUserAppointments(remainingAppointments);
+                toast.success(response.data.message)
+              } else {
+                toast.error(response.data.message)
+              }
+        } catch(err){
+            console.log(err);
+        }
+    }
+
 
     return (
     <div> 
@@ -65,7 +71,7 @@ const appointments = () => {
         <div className="appointmentCards">
                 {userAppointments.length == 0 ? <p>You have no scheduled appointments...</p> :
                     userAppointments.map((apptInfo, key) => (
-                        <AppointmentCard apptInfo={apptInfo} key={key} />
+                        <AppointmentCard apptInfo={apptInfo} key={key} handleDeleteAppointment={handleDeleteAppointment} />
                     ))
                 }
         </div>
