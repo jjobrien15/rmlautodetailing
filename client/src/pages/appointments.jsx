@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetUserId } from "../hooks/useGetUserId";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { useCookies } from "react-cookie"
 
 import axios from "axios";
 import Popup from "reactjs-popup"
@@ -14,7 +15,8 @@ import toast from "react-hot-toast";
 import "../stylesheets/appointments.scss"
 
 const appointments = () => {
-    const [userAppointments, setUserAppointments] = useState([])
+    const [userAppointments, setUserAppointments] = useState([]);
+    const [cookies, _] = useCookies(["access_token"]);
 
     //useNavigate hook to redirect on logout
     const navigate = useNavigate();
@@ -28,7 +30,12 @@ const appointments = () => {
             if (userId) {
                 try {
                     const response = await axios.get(
-                        `${import.meta.env.VITE_BASE_URI}/profile/appointments/${userId}`
+                        `${import.meta.env.VITE_BASE_URI}/profile/appointments/${userId}`,
+                        {
+                            headers: {
+                                auth: cookies.access_token
+                            }
+                        }
                     );
                     setUserAppointments(response.data)
                 } catch (err) {

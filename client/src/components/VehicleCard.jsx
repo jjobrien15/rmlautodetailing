@@ -9,9 +9,9 @@ const VehicleCard = ({ vehicleInfo, handleDeleteVehicle }) => {
         {vehicleInfo.name ? <h4>{vehicleInfo.name}</h4> : <h4>Vehicle</h4>}
         <p>{vehicleInfo.year} {vehicleInfo.make} {vehicleInfo.model}</p>
       </div>
-      <div className="vehicleCardInfo2">
+      {/*<div className="vehicleCardInfo2">
       {vehicleInfo.details}
-      </div>
+      </div>*/}
       <div className="vehicleCardInfo3">
         <Popup className="popupEditVehicle" trigger={<button className="editVehicleBtn">Edit</button>} modal nested>
           <EditVehicle vehicleInfo={vehicleInfo} />

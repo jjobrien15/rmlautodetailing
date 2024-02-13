@@ -1,9 +1,11 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import "../stylesheets/services.scss"
 import ServicesAccordion from "../components/ServicesAccordion"
 
+import "../stylesheets/services.scss"
+
 const services = () => {
+
   return (
     <div>
       <Navbar />

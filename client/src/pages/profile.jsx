@@ -1,13 +1,15 @@
 import Navbar from "../components/Navbar"
-import "../stylesheets/profile.scss";
+import axios from "axios"
+
 import { useEffect, useState } from "react"
 import { useCookies } from "react-cookie"
 import { useGetUserId } from "../hooks/useGetUserId"
 import { Outlet, Link, useNavigate } from "react-router-dom"
-import axios from "axios"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-regular-svg-icons'
 import { faUser, faCar, faUserPen, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+
+import "../stylesheets/profile.scss";
 
 const profile = () => {
 

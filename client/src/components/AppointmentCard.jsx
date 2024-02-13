@@ -11,10 +11,6 @@ const AppointmentCard = ({apptInfo, handleDeleteAppointment}) => {
           <p>{apptInfo.service}</p>
           <p>{new Date(apptInfo.serviceDate).toLocaleString('en-US', { month: "long", day: "numeric", year: "numeric" })}</p>
         </div>
-        <div className="appointmentCardInfo2">
-          <h4>Detailer</h4>
-          <p>Jon Stamos</p>
-        </div>
         <div className="appointmentCardInfo3">
         <Popup className="popupEditVehicle" trigger={<button className="rescheduleBtn">Reschedule</button>} modal nested>
           <EditAppointment apptInfo={apptInfo} />
