@@ -1,0 +1,6 @@
+/****************************** NOTES *************************************/
+/************ Admin ************/
+- Auth levels (Create only 2 for now)
+- Create database for services
+-- Use services DB to populate services page.
+-- Add Links on services page for each service to schedule a service

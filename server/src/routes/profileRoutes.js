@@ -1,35 +1,19 @@
 import express from "express";
+import jwt from "jsonwebtoken";
+import verifyToken from "../middleware/verifyToken.js";
+
 import { appointmentModel } from "../models/appointmentsModel.js";
 import { vehicleModel } from "../models/vehiclesModel.js";
 import { UserModel } from "../models/usersModel.js";
-import { ObjectId } from "mongodb";
+
+import "dotenv/config"
 
 const router = express.Router();
 
 /************************************************* GETS *****************************************************/
 
-//view single appointment details. Not in use.
-router.get("/viewAppointment", async (req, res) => {
-    try {
-        const response = await appointmentModel.find({})
-        res.json(response);
-    } catch (err) {
-        res.json(err);
-    }
-});
-
-//Not in use. Not sure what this wil be used for yet.
-router.get("/appointments/ids", async (req, res) => {
-    try {
-        const user = await UserModel.findById(req.body.userID);
-        res.json({ savedAppointments: user?.appointments });
-    } catch (err) {
-        console.log(err);
-    }
-});
-
 //Get all client appointments for appointments page
-router.get("/appointments/:userId", async (req, res) => {
+router.get("/appointments/:userId", verifyToken, async (req, res) => {
     try {
         const userAppointments = await appointmentModel.find({ clientId: req.params.userId }).sort("serviceDate");
         res.json(userAppointments);

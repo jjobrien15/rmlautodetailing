@@ -2,3 +2,5 @@
 node_modules
 # Local Netlify folder
 .netlify
+# Ignoring a text documents for development notes
+notes
