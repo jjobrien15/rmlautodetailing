@@ -10,7 +10,7 @@ const router = express.Router();
 //Get all services
 router.get("/services", async (req, res) => {
     try {
-        const services = await serviceModel.find({});
+        const services = await serviceModel.find();
         res.json(services);
     } catch (err) {
         console.log(err);

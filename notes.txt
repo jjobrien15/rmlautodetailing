@@ -4,3 +4,19 @@
 - Create database for services
 -- Use services DB to populate services page.
 -- Add Links on services page for each service to schedule a service
+
+
+/*****Database ideas for admin *********/
+- create individual model for each input.
+
+- *** create single model with properties for everything even if it dosent need it
+
+- creat admin pages to work on sections reather than entire pages.
+
+--------Refactor how FormInput component works to not use spread operator--------
+-Allows to enter a type of input to change in the component/formgroup
+-Allows to only create a single model which some may have extra fields 
+---but will be able to use checks to better organize admin page and display information.
+----AKA create a new component for "AdminFormInput"?
+
+*********** Will need several models *************

@@ -22,7 +22,7 @@ router.get("/profile/:id", verifyToken, async (req, res) => {
 /********************************************* POSTS ***********************************************/
 //Register a new user and hash password
 router.post("/register", async (req, res) => {
-    const { fname, lname, email, pwd } = req.body;
+    const { auth, fname, lname, email, pwd } = req.body;
     const user = await UserModel.findOne({ email });
 
     if (user) {
@@ -31,7 +31,7 @@ router.post("/register", async (req, res) => {
 
     const hashedPwd = await bcrypt.hash(pwd, 10);
 
-    const newUser = new UserModel({ fname, lname, email, pwd:hashedPwd });
+    const newUser = new UserModel({ auth, fname, lname, email, pwd:hashedPwd });
 
     await newUser.save();
 

@@ -11,16 +11,19 @@
     form{
         display: flex;
         flex-direction: column; 
-        gap: var.$form-gap;
         width: 100%;
-        padding: 2rem 0;
-        input, select{
-            background-color: var.$gray;
+        gap: var.$form-gap;
+        padding-bottom: 2rem;   
+        input, select, textarea{
+            background-color: var.$white;
             border: 1px solid transparent;
             border-radius: 5px;
             padding: 0.5rem 1rem;
             width: 100%;
             color: var.$black;
+        }
+        textarea {
+            resize:vertical;
         }
         .formErrMessage{
             color: red;

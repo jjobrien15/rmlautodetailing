@@ -16,6 +16,11 @@ import Profile from "./pages/profile"
 import Appointments from "./pages/appointments"
 import EditProfile from "./pages/edit-profile"
 import ErrorPage from "./pages/error-page"
+import AdminHome from "./pages/admin_home"
+import AdminServices from "./pages/admin_services"
+import AdminGallery from "./pages/admin_gallery"
+import AdminAbout from "./pages/admin_about"
+
 import "./stylesheets/main.scss"
 
 
@@ -65,6 +70,22 @@ const router = createBrowserRouter([
         {
           path: "MySchedule",
           element: <Schedule />,
+        },
+        {
+          path: "AdminHome",
+          element: <AdminHome />
+        },
+        {
+          path: "AdminServices",
+          element: <AdminServices />
+        },
+        {
+          path: "AdminGallery",
+          element: <AdminGallery />
+        },
+        {
+          path: "AdminAbout",
+          element: <AdminAbout />
         },
     ]
   },

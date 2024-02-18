@@ -12,7 +12,7 @@ const ServicesAccordion = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = axios.get(`${import.meta.env.VITE_BASE_URI}/content/services`);
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URI}/content/services`);
         setServices(response.data);
       } catch (err) {
         console.log(err);

@@ -12,9 +12,9 @@ const AppointmentCard = ({apptInfo, handleDeleteAppointment}) => {
           <p>{new Date(apptInfo.serviceDate).toLocaleString('en-US', { month: "long", day: "numeric", year: "numeric" })}</p>
         </div>
         <div className="appointmentCardInfo3">
-        <Popup className="popupEditVehicle" trigger={<button className="rescheduleBtn">Reschedule</button>} modal nested>
-          <EditAppointment apptInfo={apptInfo} />
-        </Popup>
+          <Popup className="popupEditVehicle" trigger={<button className="rescheduleBtn">Reschedule</button>} modal nested>
+            <EditAppointment apptInfo={apptInfo} />
+          </Popup>
           <button className="cancelBtn" onClick={() => handleDeleteAppointment(apptInfo)}>
             Cancel
           </button>

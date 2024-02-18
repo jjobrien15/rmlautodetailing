@@ -1,5 +1,8 @@
 import Schedule from "../pages/schedule";
 import AppointmentCard from "../components/AppointmentCard";
+import axios from "axios";
+import Popup from "reactjs-popup"
+import toast from "react-hot-toast";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,10 +10,6 @@ import { useGetUserId } from "../hooks/useGetUserId";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useCookies } from "react-cookie"
-
-import axios from "axios";
-import Popup from "reactjs-popup"
-import toast from "react-hot-toast";
 
 import "../stylesheets/appointments.scss"
 

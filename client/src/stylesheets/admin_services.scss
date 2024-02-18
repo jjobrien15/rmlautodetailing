@@ -1,0 +1,44 @@
+@use "../stylesheets/globalVariables.scss" as var;
+
+.formPageContent{
+    .formGroup{
+        .perkInput{
+            display: flex;
+            input{
+                border-radius: 5px 0 0 5px;
+            }
+            button{
+                all:unset;
+                background-color: var.$gold;
+                color: var.$black;
+                border-radius: 0 5px 5px 0;
+                padding: 0 1rem;
+            }
+        }
+        .addedPerksList{
+            list-style: none;
+            li{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                cursor:grab;
+                &::before{
+
+                }
+                .sortPerkBtn{
+                    all:unset;
+                    color: var.$gold;
+                }
+                .deletePerkBtn{
+                    all:unset;
+                    color: red;
+                    padding: 0.5rem;
+                    small{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        
+    }
+}

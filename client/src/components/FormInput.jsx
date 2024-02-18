@@ -1,8 +1,10 @@
 import { useState } from "react";
 
+import "../stylesheets/formInput.scss";
+
 const FormInput = (props) => {
     
-  const {...input } = props;
+  const { ...input } = props;
 
     const [focused, setFocused] = useState(false);
 

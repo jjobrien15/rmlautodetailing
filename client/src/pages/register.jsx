@@ -13,6 +13,7 @@ const register = () => {
   const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
+    auth: 0,
     fname: "",
     lname:"",
     email: "",
