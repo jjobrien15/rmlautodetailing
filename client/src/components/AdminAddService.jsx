@@ -54,12 +54,10 @@ const AdminAddService = () => {
 
     const dragStart = (e) => {
         dragPerk.current = e.target.id;
-        console.log("drag start");
     }
 
     const dragEnter = (e) => {
         dragOverPerk.current = e.currentTarget.id;
-        console.log("drag enter");
     }
 
     const dragEnd = () => {
@@ -69,9 +67,7 @@ const AdminAddService = () => {
         copyPerks.splice(dragOverPerk.current, 0, dragPerkContent);
         dragPerk.current = null;
         dragOverPerk.current = null;
-        console.log(copyPerks);
         setPerks(copyPerks);
-        console.log("drag end")
     }
 
   return (
@@ -98,7 +94,7 @@ const AdminAddService = () => {
                 </div>
                 <ul className="addedPerksList">
                 {perks.map((perk, key)=>(
-                    <li key={key} draggable onDragStart={(e) => dragStart(e)} onDragEnter={(e) => dragEnter(e)} onDragEnd={dragEnd}>
+                    <li key={key} id={key} draggable onDragStart={(e) => dragStart(e)} onDragEnter={(e) => dragEnter(e)} onDragEnd={dragEnd}>
                         <button className = "sortPerkBtn">
                             <small><FontAwesomeIcon icon={faSort} /></small>
                         </button>

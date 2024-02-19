@@ -17,6 +17,8 @@
         }
         .addedPerksList{
             list-style: none;
+            max-height: 10rem;
+            overflow: auto;
             li{
                 display: flex;
                 align-items: center;
