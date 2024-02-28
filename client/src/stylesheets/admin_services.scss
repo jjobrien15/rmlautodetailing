@@ -1,6 +1,18 @@
 @use "../stylesheets/globalVariables.scss" as var;
 
 .formPageContent{
+    .formPageModalHeader{
+        display: flex;
+        justify-content: space-between;
+        button{
+            all:unset;
+            color: red;
+            cursor: pointer;
+            &:hover{
+                opacity: 0.7;;
+            }
+        }
+    }
     .formGroup{
         .perkInput{
             display: flex;

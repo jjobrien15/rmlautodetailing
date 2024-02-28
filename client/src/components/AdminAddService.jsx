@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useGetUserId } from "../hooks/useGetUserId";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faX, faPlus, faSort } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +8,7 @@ import { faX, faPlus, faSort } from '@fortawesome/free-solid-svg-icons'
 import "../stylesheets/admin_services.scss";
 
 
-const AdminAddService = () => {
+const AdminAddService = ({closeAddService}) => {
 
     const userId = useGetUserId();
 
@@ -22,8 +22,12 @@ const AdminAddService = () => {
         title: "",
         description: "",
         price: "",
-        perks: perks
-    });
+        perkList: []
+    })
+
+    useEffect(() => (
+        setService(p => ({...p, perkList:[...perks]}))
+    ), [perks]);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -31,7 +35,7 @@ const AdminAddService = () => {
     }
 
     const handleAddPerk = () => {
-        setPerks(p => [...p, newPerk]);
+        newPerk !== "" && setPerks(currentPerks => [...currentPerks, newPerk]);
     }
 
     const handleChangePerk = (e) => {
@@ -39,17 +43,17 @@ const AdminAddService = () => {
     }
 
     const handleDeletePerk = (key) => {
-        setPerks(p => p.filter((_, index) => index !== key));
+        setPerks(currentPerks => currentPerks.filter((_, index) => index !== key));
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(perks);
-        /*try{
-            await axios.post(`${import.meta.env.VITE_BASE_URI}/content/AddService`, {...service});
+        console.log("handleing submit");
+        try{
+            await axios.post(`${import.meta.env.VITE_BASE_URI}/content/addService`, {...service});
         }catch(err){
             console.log(err);
-        }*/
+        }
     }
 
     const dragStart = (e) => {
@@ -59,7 +63,7 @@ const AdminAddService = () => {
     const dragEnter = (e) => {
         dragOverPerk.current = e.currentTarget.id;
     }
-
+    //Reorder/splice perks state on end of drag.
     const dragEnd = () => {
         const copyPerks = [...perks];
         const dragPerkContent = copyPerks[dragPerk.current];
@@ -71,8 +75,11 @@ const AdminAddService = () => {
     }
 
   return (
-    <div className="formPageContent">
-        <h1>Add Service</h1>
+      <div className="formPageContent">
+        <div className="formPageModalHeader">
+            <h1>Add Service</h1>
+            <button type="button" onClick={closeAddService}><FontAwesomeIcon icon={faX} /></button>
+        </div>
         <form onSubmit={handleSubmit}>
             <div className="formGroup">
                 <label htmlFor="title">Title: </label>
@@ -86,20 +93,20 @@ const AdminAddService = () => {
                 <label htmlFor="price">Price: <small>(Blank or 0 will display "Contact for price")</small> </label>
                 <input type="number" name="price" id="price"  onChange={handleChange}/>
             </div>
-            <div className="formGroup">
-                <label htmlFor="perk">Perks:</label>
-                <div className="perkInput">
+              <div className="formGroup">
+                  <label htmlFor="perk">Perks:</label>
+                  <div className="perkInput">
                     <input type="text" name="perk" id="perk" value={newPerk} onChange={handleChangePerk}/>
-                    <button className="addPerkBtn" onClick={handleAddPerk}><FontAwesomeIcon icon={faPlus}/></button>
+                    <button type="button" className="addPerkBtn" onClick={handleAddPerk}><FontAwesomeIcon icon={faPlus}/></button>
                 </div>
                 <ul className="addedPerksList">
                 {perks.map((perk, key)=>(
                     <li key={key} id={key} draggable onDragStart={(e) => dragStart(e)} onDragEnter={(e) => dragEnter(e)} onDragEnd={dragEnd}>
-                        <button className = "sortPerkBtn">
+                        <button type="button" className = "sortPerkBtn">
                             <small><FontAwesomeIcon icon={faSort} /></small>
                         </button>
                         {perk}
-                        <button className = "deletePerkBtn" onClick={() => handleDeletePerk(key)}>
+                        <button type="button" className = "deletePerkBtn" onClick={() => handleDeletePerk(key)}>
                             <small><FontAwesomeIcon icon={faX} /></small>
                         </button>
                     </li>

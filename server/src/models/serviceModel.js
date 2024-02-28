@@ -16,11 +16,10 @@ const serviceSchema = new mongoose.Schema({
     price: {
         type: Number
     },
-    perks: [{
-        details:{
-            type: String
-        }
-    }]  
+    perkList: {
+        type: [String],
+        default: []
+    }  
 })
 
 export const serviceModel = mongoose.model("services", serviceSchema);
