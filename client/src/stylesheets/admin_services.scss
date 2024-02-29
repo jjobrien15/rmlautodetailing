@@ -36,9 +36,6 @@
                 align-items: center;
                 justify-content: space-between;
                 cursor:grab;
-                &::before{
-
-                }
                 .sortPerkBtn{
                     all:unset;
                     color: var.$gold;

@@ -43,13 +43,27 @@ nav{
                 position: relative;
                 color: var.$white;
                 height: 100%;
-                transition: all 0.3s ease;
                 font-size: 1rem;
                 padding:1rem;
                 cursor: pointer;
+                opacity: 0.8;
+                &::after{
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    width: 0;
+                    border-radius: 5px;
+                    transition: ease 0.3s all;
+                }
                 &:hover{
-                    color: var.$darkGray;
-                    background-color: var.$gold;
+                    opacity: 1;
+                    &::after{
+                        content: "";
+                        display: block;
+                        height: 2px;
+                        width: 100%;
+                        background-color: var.$gold;
+                    }
                 }
             }
             
@@ -57,7 +71,6 @@ nav{
 
         .navProfileBtnLink{
             min-width: 15rem;
-
             .navProfileBtn{
                 border: none; 
                 background-color: transparent;
@@ -79,10 +92,6 @@ nav{
                 .navProfileMenuLink{ 
                     padding: 1rem 2rem; 
                     color: var.$white;
-                    &:hover{
-                        color: var.$darkGray;
-                        background-color: var.$gold;
-                    }
                 }
             }
         }

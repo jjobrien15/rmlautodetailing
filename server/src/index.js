@@ -16,6 +16,6 @@ app.use("/content", contentRouter);
 
 mongoose.connect(process.env.CONN_STRING)
 
-app.listen(3001, () => (
+app.listen(3001, "0.0.0.0", () => (
     console.log("Server is running... ")
 ));

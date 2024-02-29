@@ -57,7 +57,7 @@ const Vehicles = () => {
     <div>
       <div className="vehiclesHeader">
         <h1>My Vehicles</h1>
-            <Popup className="popupAddVehicle" trigger={<button className="addVehicleBtn">Add Vehicle <FontAwesomeIcon icon={faPlus} /></button> }modal nested>
+            <Popup className="popupAddVehicle" trigger={<button className="addVehicleBtn"><FontAwesomeIcon icon={faPlus} /></button> }modal nested>
                 <AddVehicle />
             </Popup>
       </div>

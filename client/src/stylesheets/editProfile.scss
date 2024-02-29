@@ -32,3 +32,9 @@
         }
     }
 }
+
+@media screen and (max-width: var.$responsive-width) {
+    .edit-profile form .formGroup{
+        width: 100%;
+    }
+}
