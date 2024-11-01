@@ -75,7 +75,11 @@ const appointments = () => {
         </div>
 
         <div className="appointmentCards">
-                {userAppointments.length == 0 ? <p>You have no scheduled appointments...</p> :
+                {userAppointments.length == 0 ? <p>You have no scheduled appointments...
+                <Popup className="popupSchedule" trigger={<button className="bookAppointmentBtn">Schedule Now</button> }modal nested>
+                    <Schedule />
+                </Popup> </p>
+                    :
                     userAppointments.map((apptInfo, key) => (
                         <AppointmentCard apptInfo={apptInfo} key={key} handleDeleteAppointment={handleDeleteAppointment} />
                     ))

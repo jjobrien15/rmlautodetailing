@@ -6,11 +6,13 @@ const FormInput = (props) => {
     
   const { ...input } = props;
 
-    const [focused, setFocused] = useState(false);
+  const [focused, setFocused] = useState(false);
 
-    const handleFocused = (e) => {
-        setFocused(true)
+  const handleFocused = (e) => {
+      setFocused(true)
   }
+
+  console.log(input.name + " - " + input.label);
 
   return (
     <div className="formGroup">

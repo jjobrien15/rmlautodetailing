@@ -1,5 +1,4 @@
-import FormInput from "../components/FormInput";
-
+import "../stylesheets/admin.scss"
 import "../stylesheets/admin_home.scss";
 
 const admin_home = () => {
@@ -12,11 +11,7 @@ const admin_home = () => {
     {
       name:"link1",
       label:"Link 1"
-    },
-    {
-      name:"link2",
-      label:"Link 2"
-    },
+    }
   ]
 
   const handleSubmit = (e) => {
@@ -26,14 +21,17 @@ const admin_home = () => {
 
   return (
     <div>
-      <div>
+      <div className="adminHeader">
         <h1>Home</h1>
         <p>(Admin)</p>
       </div>
-      <div className="content">
+      <div className="adminForm">
         <form onSubmit={handleSubmit}>
-          {input.map((input, key)=>(
-            <FormInput input={input} key={key} />
+          {input.map((currentInput, key) => (
+            <div className="form-group">
+              <label htmlFor={currentInput.name}>{currentInput.label}</label>
+              <input name={currentInput.name} type="text"/>
+            </div>
           ))}
           <button className="submitBtn" type="submit">
             Submit

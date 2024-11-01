@@ -45,5 +45,18 @@
             }
         }
     }
+    p button{
+        background-color: var.$gold;
+        color: var.$darkGray;
+        border: none;
+        padding:  0.5rem 1rem;
+        margin-left: 0.5rem;
+        border-radius: 10px;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
+        cursor: pointer;
+        &:hover{
+            box-shadow: 0 1px 4px 0 rgba(0,0,0,0.7);
+        }
+    }
 }
 
